@@ -57,6 +57,7 @@ a:hover, a:focus {
 
 .card {
     margin-bottom: 20px;
+    border-color: transparent;
 }
 
 .card-img-top {
