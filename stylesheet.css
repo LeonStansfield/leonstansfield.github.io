@@ -61,6 +61,6 @@ a:hover, a:focus {
 }
 
 .card-img-top {
-    height: 180px;
+    max-height: 600px;
     object-fit: cover;
 }
