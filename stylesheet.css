@@ -1,0 +1,65 @@
+/* Base styles */
+body {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    padding-top: 56px;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold; /* Adjust as needed */
+}
+
+p, .lead, .blog-meta {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: normal; /* Adjust as needed */
+}
+
+/* Navigation and Footer */
+.navbar, footer {
+    background-color: #f8f9fa;
+}
+
+/* Links */
+a, a:visited { /* Styles for links */
+    color: #6c757d;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #5a6268;
+    text-decoration: underline;
+}
+
+/* Layout and Alignment */
+.blog-content {
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+}
+
+.blog-title, .blog-meta {
+    text-align: center;
+}
+
+.intro {
+    margin-top: 20px;
+}
+
+/* Components */
+.social-icons a {
+    margin: 0 10px;
+    font-size: 1.5rem;
+    color: black;
+}
+
+.card {
+    margin-bottom: 20px;
+}
+
+.card-img-top {
+    height: 180px;
+    object-fit: cover;
+}
