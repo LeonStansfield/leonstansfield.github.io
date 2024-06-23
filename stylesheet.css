@@ -64,3 +64,11 @@ a:hover, a:focus {
     max-height: 600px;
     object-fit: cover;
 }
+
+.img-center {
+    display: block;
+    margin: 0 auto 20px;
+    max-width: 80%;
+    height: auto;
+    border-radius: 5px;
+  }

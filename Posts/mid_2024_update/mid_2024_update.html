@@ -55,7 +55,7 @@
                         Making software for managing and displaying real-time dynamic visuals for live music.
                     </p>
                     <p>
-                        Back in November, I went to a concert for a local band called SCALER, who are really cool and
+                        Back in November, I went to a concert for a local band called <a href="https://open.spotify.com/artist/3pMZZzAKwSIftJmwtEx56W">SCALER</a>, who are really cool and
                         importantly have some really cool visuals. After their concert, I sat on the bus home and
                         wondered if I could make something like that. That idea sat with me for a solid 9 hours (the
                         next morning) when I opened up Godot and got to work.
@@ -108,7 +108,7 @@
                         This system lets you create dynamic, real-time visuals for music performances and would be
                         perfect for DJ sets or other audio-visual experiences.
                     </p>
-                    <img src = "Resources\ezgif-5-15740c4402.gif" alt = "A GIF showcasing the visual management software">
+                    <img src = "Resources\ezgif-5-15740c4402.gif" alt = "A GIF showcasing the visual management software" class="img-center">
                     <p>
                         So that’s an outline of the system itself, but the cool thing about this system is it can be
                         paired with any aesthetic of visuals conceivable. I put a lot of effort into creating some
@@ -116,7 +116,7 @@
                         aesthetic I was going for would fit a techno or electro rave, with psychedelic colourful and
                         fast visuals.
                     </p>
-                    <img src = "Resources\ezgif-5-5193a75547.gif" alt = "A GIF showcasing the visual management software">
+                    <img src = "Resources\ezgif-5-5193a75547.gif" alt = "A GIF showcasing the visual management software" class="img-center">
                     <p>
                         Imagine that being projected on a massive screen with the loudest thumping techno in some
                         basement club… I think it would be awesome. The project has been left on standby for now, as it
@@ -152,7 +152,7 @@
                         all its children, calling their update functions. This process continues down the hierarchy,
                         ensuring every object gets updated in the correct order.
                     </p>
-                    <img src = "Resources\screenshot-2024-05-17-101115.webp" alt = "A diagram showing the way the node tree is explored depth first">
+                    <img src = "Resources\screenshot-2024-05-17-101115.webp" alt = "A diagram showing the way the node tree is explored depth first" class="img-center">
                     <p>
                         Next up we needed children to inherit their parent’s properties. To do this, the engine
                         differentiates between its global position (relative to the entire world) and local position
@@ -181,11 +181,11 @@
                             children.
                         </li>
                     </ul>
-                    <img src = "Resources\screenshot-2024-05-17-105954.webp" alt = "A screenshot of blender with the python export script in the script editor.">
+                    <img src = "Resources\screenshot-2024-05-17-105954.webp" alt = "A screenshot of blender with the python export script in the script editor." class="img-center">
                     <p>
                         Here is a look at what a scene description file looks like:
                     </p>
-                    <img src = "Resources\screenshot-2024-05-17-110029.webp" alt = "A screenshot of a scene description file">
+                    <img src = "Resources\screenshot-2024-05-17-110029.webp" alt = "A screenshot of a scene description file" class="img-center">
                     <p>
                         In the engine, I created a scene manager class that would parse the data exported from Blender
                         and create the corresponding objects within the game world. This integration worked reasonably
@@ -195,30 +195,30 @@
                         priority, I had to temporarily step away from the project.
                     </p>
                     <img src = "Resources\screenshot-2024-05-17-105916.webp" alt = "A screenshot of the engine running, showing the correct positions and rotations of
-                    objects">
+                    objects" class="img-center">
                     <p>
                         Despite this, the Sparrow Hawk engine was a great learning experience and definitely further
                         strengthened my understanding of game engines and C++. I am incredibly proud of the project and
                         may well pick it up again in the future.
                     </p>
                     <p>
-                        Check out the code here
+                        Check out the code <a href="https://github.com/LeonStansfield/SparrowHawk">here</a>
                     </p>
                     <h2>Graphing the Internet</h2>
                     <p>
-                        So I saw a cool video of someone who created a cool 2D visualization of Wikipedia, with pages
+                        So I saw a <a href="https://youtu.be/JheGL6uSF-4?si=jA4qVoZz-kcNLfG-">cool video</a> of someone who created a cool 2D visualization of Wikipedia, with pages
                         grouped based on their relevance to one another. I had an idea; wouldn’t it be cool to explore
                         the internet in a 3D graph, the same way you explore the galaxy maps in games like No Man Sky or
                         Elite Dangerous?
                     </p>
-                    <img src = "Resources\nms1dot3galaxymap.webp" alt = "A screenshot of the galaxy map in No Man's Sky">
+                    <img src = "Resources\nms1dot3galaxymap.webp" alt = "A screenshot of the galaxy map in No Man's Sky" class="img-center">
                     <p><em>A screenshot of the galaxy map in No Man's Sky</em></p>
                     <p>
                         So I tried to create a program to do just that. I decided to use Rust, for no reason other than
                         it seems trendy and up my street. I created a program that would begin by crawling websites,
                         construct a graph of the websites and then render them in 3D.
                     </p>
-                    <img src = "Resources\screenshot-from-2024-05-17-10-43-58.webp" alt = "A screenshot of a website graphed out in 3D">
+                    <img src = "Resources\screenshot-from-2024-05-17-10-43-58.webp" alt = "A screenshot of a website graphed out in 3D" class="img-center">
                     <p>
                         The program starts by taking a URL, scraping its HTML content, and extracting all the links on
                         that page. It then recursively scrapes those linked pages, building a massive web of
@@ -227,16 +227,16 @@
                         the graph created, the challenge became visualizing it. I used Macroquad, a Rust library similar
                         to Raylib, to draw the nodes and edges as spheres and lines between them.
                     </p>
-                    <img src = "Resources\screenshot-from-2024-05-17-10-39-48-1.webp" alt = "A screenshot of a website graphed out in 3D">
+                    <img src = "Resources\screenshot-from-2024-05-17-10-39-48-1.webp" alt = "A screenshot of a website graphed out in 3D" class="img-center">
                     <p>
                         While this approach creates a cool way to visualize websites, it has a couple limitations, such
                         as its scalability. This method works well for smaller websites. However, large sites with
                         thousands of pages would quickly become overwhelming visual messes. I also ran into issues with
                         node positioning. Initially, I assigned random positions to nodes, which wasn’t ideal. I aimed
-                        to implement a system like Logseq (a note-taking app), where node positions are determined by
+                        to implement a system like <a href="https://logseq.com/">Logseq</a> (a note-taking app), where node positions are determined by
                         their connections to other nodes.
                     </p>
-                    <img src = "Resources\erwuo71voaa6bpn.webp" alt = "A screenshot of Logseq's notes graph">
+                    <img src = "Resources\erwuo71voaa6bpn.webp" alt = "A screenshot of Logseq's notes graph" class="img-center">
                     <p>
                         Unfortunately, I never did think of a solution to this problem before exam season kicked off and
                         I had to focus on essays and group projects and I ended up shelving the project.
@@ -265,12 +265,13 @@
                         physics shows how easy it is to expand the engine and add new components and systems for added
                         functionality.
                     </p>
-                    <img src = "Resources\ezgif-5-a67d4c6cb5.gif" alt = "A GIF showing the engine running a basic rigid body simulation">
+                    <img src = "Resources\ezgif-5-a67d4c6cb5.gif" alt = "A GIF showing the engine running a basic rigid body simulation" class="img-center">
                     <p>
                         I am really excited about this engine, its modularity and ease of expansion are very compelling
                         and I look forward to working on it more. With any luck, I will probably make another post about
                         it.
                     </p>
+                    <hr>
                     <p>
                         So that’s a little look at what I have been working on. It’s funny – I have a collection of
                         foundational game engines and frameworks, but no finished games to show for it. Part of the
