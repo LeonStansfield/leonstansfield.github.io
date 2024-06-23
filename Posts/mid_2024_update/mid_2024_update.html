@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../stylesheet.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -23,16 +26,271 @@
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
+                    <h1 class="blog-title mt-4">Mid 2024 Update</h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
-                    <p class="blog-meta">Posted on [Date] at [Time]</p>
-                    <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
+                    <p class="blog-meta">Posted on 17th May 2024</p>
                     <!-- Post Content -->
-                    <p class="lead">Your blog post content here...</p>
-                </div>
+                    <p>
+                        Its been almost a year since I last posted here! This is crazy because I have definitely been
+                        busy… but ultimately it’s for a few reasons. The first is that I made the portfolio website
+                        because I was applying for placement positions and internships. After many applications,
+                        aptitude tests and interviews, I landed an industrial placement! This is of course good news,
+                        but I had no reason to keep updating it so often.
+                    </p>
+                    <p>
+                        The second is that I am generally busy with university, both academically and socially. I have
+                        just finished the second year of my degree, and the largest chunk of my time since September has
+                        been going into that. While I am incredibly proud of the work I have produced for my course, not
+                        much of it aligns with the images or themes I want to project here (engine, graphics and game
+                        programming) so I haven’t put it here.
+                    </p>
+                    <p>
+                        With that being said, I have worked on some cool little projects, if a little less than I would
+                        have hoped. Which I will now tell you about.
+                    </p>
+                    <h2>Concert Visuals</h2>
+                    <p>
+                        Making software for managing and displaying real-time dynamic visuals for live music.
+                    </p>
+                    <p>
+                        Back in November, I went to a concert for a local band called SCALER, who are really cool and
+                        importantly have some really cool visuals. After their concert, I sat on the bus home and
+                        wondered if I could make something like that. That idea sat with me for a solid 9 hours (the
+                        next morning) when I opened up Godot and got to work.
+                    </p>
+                    <p>
+                        I wanted my visuals to be unique in a few ways. I wanted them to be rendered in real-time, not
+                        pre-rendered, so they could be dynamically controlled with live music or a DJ set, something a
+                        bit more spontaneous. I wanted the user to have control over the show. I wanted a visual
+                        manager, a hub where you could swap between scenes at run time, tweak the properties of
+                        individual visuals inside a scene and trigger auto actions, such as animations, bursts of light
+                        or GDScript functions. To tie it together I wanted it to automatically synced to the beat of a
+                        song. Imagine setting a specific effect, like a flash of light, to happen every 4 beats or a
+                        visual transformation to occur on every beat.
+                    </p>
+                    <p>
+                        I am not sure if any of that makes sense, but alas my vision was strong, and I got to work. The
+                        structure of the system I built is as follows:
+                    </p>
+                    <ul>
+                        <li>
+                            We have the visual manager. This is a singleton that keeps track of all the visual elements
+                            in the current scene.
+                        </li>
+                        <li>
+                            We have the visual container, which is the parent node of all visuals in the scene. Upon
+                            loading a scene, this will create the list of visuals and pass this to the visual manager.
+                        </li>
+                        <li>
+                            We have the individual visuals themselves. The visuals are the nodes that contain the actual
+                            meshes, lights, panels, and whatever the visual is. Each visual has a script with a function
+                            call_action(action_index). When called, this function will call the action of the relevant
+                            index.
+                        </li>
+                        <li>
+                            On the UI side, we have the visual manager UI, which is the separate window which contains
+                            the UI for managing the visuals. Using this UI, we can set the BPM on the auto action
+                            manager, load new scenes and sync the BPM. On loading a new scene, it will instantiate a
+                            mini ‘visual UI’ component component for each visual on the scene.
+                        </li>
+                        <li>
+                            Each visual UI has some controls for each visual element, allowing you to assign actions and
+                            sync them to the music’s beat.
+                        </li>
+                        <li>
+                            Finally, the auto action manager keeps time with the music, triggering the assigned auto
+                            actions at the correct time with the set BPM.
+                        </li>
+                    </ul>
+                    <p>
+                        This system lets you create dynamic, real-time visuals for music performances and would be
+                        perfect for DJ sets or other audio-visual experiences.
+                    </p>
+                    <img src = "Resources\ezgif-5-15740c4402.gif" alt = "A GIF showcasing the visual management software">
+                    <p>
+                        So that’s an outline of the system itself, but the cool thing about this system is it can be
+                        paired with any aesthetic of visuals conceivable. I put a lot of effort into creating some
+                        visuals including shader effects, 3D models and animations to demonstrate its capabilities. The
+                        aesthetic I was going for would fit a techno or electro rave, with psychedelic colourful and
+                        fast visuals.
+                    </p>
+                    <img src = "Resources\ezgif-5-5193a75547.gif" alt = "A GIF showcasing the visual management software">
+                    <p>
+                        Imagine that being projected on a massive screen with the loudest thumping techno in some
+                        basement club… I think it would be awesome. The project has been left on standby for now, as it
+                        is mostly complete and I don’t currently have any use cases, although am hoping to get some use
+                        out of it for some friends bands who have expressed interest in its use for their live shows.
+                    </p>
+                    <h2>Sparrow Hawk Engine</h2>
+                    <p>
+                        Making a node-based game engine that uses Blender as a level editor.
+                    </p>
+                    <p>
+                        I cannot remember where, or if this is even true, but I had heard that Rockstar’s rage engine
+                        doesn’t actually have an editor, just a complex pipeline of plugins that take levels created in
+                        software like Maya or something, and imports them into the engine, which is just a visual studio
+                        project or something. This got the old gears turning in my head. If I wanted to create game
+                        engines, this would be a great way to approach level design. Why reinvent the wheel, when I
+                        could just use Blender to actually design levels, write a script to export them into a file type
+                        my engine could read, and then when I run the engine, it reads said file and loads the level I
+                        created. To add to this, I wanted to improve my engine fundamentally from my previous attempt,
+                        Merlin. In Merlin, I simply had a vector to keep track of all the objects in my scene. This is a
+                        fine, simple approach, but it can be beneficial to have objects have a relation to one another.
+                        To combat this, I wanted my new engine to have a node tree approach, so objects can be children,
+                        or parents of other objects, and children will inherit their parent’s properties such as
+                        position or rotation.
+                    </p>
+                    <p>
+                        So once again, I got to work.
+                    </p>
+                    <p>
+                        To start off with, I designed the core of the engine. Sparrow Hawk Engine works by assigning
+                        each object a list containing references to its children. When the engine updates the scene, it
+                        starts at the “root” object (think of it as the head of the family tree) and iterates through
+                        all its children, calling their update functions. This process continues down the hierarchy,
+                        ensuring every object gets updated in the correct order.
+                    </p>
+                    <img src = "Resources\screenshot-2024-05-17-101115.webp" alt = "A diagram showing the way the node tree is explored depth first">
+                    <p>
+                        Next up we needed children to inherit their parent’s properties. To do this, the engine
+                        differentiates between its global position (relative to the entire world) and local position
+                        (relative to their parent), for example. When a parent object moves, we want its children to
+                        move with it. Since the object is drawn based on its global position, I achieve this by updating
+                        the global positions based on the local positions and their parent’s position in each frame.
+                    </p>
+                    <p>
+                        The final task was the blender integration. I needed a way to export 3D models and scene
+                        information from Blender into a format my engine could understand.
+                    </p>
+                    <p>
+                        To achieve this, I wrote a Python script for Blender. This script performs two key tasks:
+                    </p>
+                    <ul>
+                        <li>
+                            <strong>Exporting Meshes:</strong> It iterates through all the objects in your Blender scene
+                            and checks if they are meshes (3D models). If they are, the script exports each mesh as a
+                            separate GLB file.
+                        </li>
+                        <li>
+                            <strong>Creating a Scene Description File:</strong> In addition to the models, the engine
+                            needs to know how these objects are positioned and arranged in the scene. The script tackles
+                            this by creating a text file named “scene.txt”. This file stores information for each
+                            object, including the name, location, rotation, scale and relationships between parents and
+                            children.
+                        </li>
+                    </ul>
+                    <img src = "Resources\screenshot-2024-05-17-105954.webp" alt = "A screenshot of blender with the python export script in the script editor.">
+                    <p>
+                        Here is a look at what a scene description file looks like:
+                    </p>
+                    <img src = "Resources\screenshot-2024-05-17-110029.webp" alt = "A screenshot of a scene description file">
+                    <p>
+                        In the engine, I created a scene manager class that would parse the data exported from Blender
+                        and create the corresponding objects within the game world. This integration worked reasonably
+                        well, allowing me to import and position objects created in Blender. One persistent challenge
+                        involved accurately inheriting the rotation of objects between parent and child nodes. This
+                        issue remains unresolved as Ultimately, with winter break ending and other commitments taking
+                        priority, I had to temporarily step away from the project.
+                    </p>
+                    <img src = "Resources\screenshot-2024-05-17-105916.webp" alt = "A screenshot of the engine running, showing the correct positions and rotations of
+                    objects">
+                    <p>
+                        Despite this, the Sparrow Hawk engine was a great learning experience and definitely further
+                        strengthened my understanding of game engines and C++. I am incredibly proud of the project and
+                        may well pick it up again in the future.
+                    </p>
+                    <p>
+                        Check out the code here
+                    </p>
+                    <h2>Graphing the Internet</h2>
+                    <p>
+                        So I saw a cool video of someone who created a cool 2D visualization of Wikipedia, with pages
+                        grouped based on their relevance to one another. I had an idea; wouldn’t it be cool to explore
+                        the internet in a 3D graph, the same way you explore the galaxy maps in games like No Man Sky or
+                        Elite Dangerous?
+                    </p>
+                    <img src = "Resources\nms1dot3galaxymap.webp" alt = "A screenshot of the galaxy map in No Man's Sky">
+                    <p><em>A screenshot of the galaxy map in No Man's Sky</em></p>
+                    <p>
+                        So I tried to create a program to do just that. I decided to use Rust, for no reason other than
+                        it seems trendy and up my street. I created a program that would begin by crawling websites,
+                        construct a graph of the websites and then render them in 3D.
+                    </p>
+                    <img src = "Resources\screenshot-from-2024-05-17-10-43-58.webp" alt = "A screenshot of a website graphed out in 3D">
+                    <p>
+                        The program starts by taking a URL, scraping its HTML content, and extracting all the links on
+                        that page. It then recursively scrapes those linked pages, building a massive web of
+                        connections. As links are discovered, the program creates a graph data structure. Each webpage
+                        becomes a node, and the links between them are represented as edges connecting these nodes. With
+                        the graph created, the challenge became visualizing it. I used Macroquad, a Rust library similar
+                        to Raylib, to draw the nodes and edges as spheres and lines between them.
+                    </p>
+                    <img src = "Resources\screenshot-from-2024-05-17-10-39-48-1.webp" alt = "A screenshot of a website graphed out in 3D">
+                    <p>
+                        While this approach creates a cool way to visualize websites, it has a couple limitations, such
+                        as its scalability. This method works well for smaller websites. However, large sites with
+                        thousands of pages would quickly become overwhelming visual messes. I also ran into issues with
+                        node positioning. Initially, I assigned random positions to nodes, which wasn’t ideal. I aimed
+                        to implement a system like Logseq (a note-taking app), where node positions are determined by
+                        their connections to other nodes.
+                    </p>
+                    <img src = "Resources\erwuo71voaa6bpn.webp" alt = "A screenshot of Logseq's notes graph">
+                    <p>
+                        Unfortunately, I never did think of a solution to this problem before exam season kicked off and
+                        I had to focus on essays and group projects and I ended up shelving the project.
+                    </p>
+                    <h2>Osprey Engine</h2>
+                    <p>
+                        An ECS-based game engine built in Rust
+                    </p>
+                    <p>
+                        So this final project I will talk about very much sprung from the grave of the previous web
+                        graphing project. I wanted to create a new game engine – this time in Rust, and structured
+                        around an entity component system.
+                    </p>
+                    <p>
+                        The Osprey engine is built in Rust using Macroquad. The engine is implemented using a vector of
+                        Entity objects and several hashmaps that map entity IDs to their respective components, such as
+                        position, rect, colour and layer. The engine has many systems implemented. For example, a
+                        “render system” iterates through entities and their components, drawing them on the screen based
+                        on their position, size, and texture information. Another system handles camera movement,
+                        updating the camera’s position based on user input.
+                    </p>
+                    <p>
+                        The engine is very much still is still under active development. I have even ventured into a 3D
+                        version, that has a basic integration of the rapier 3D physics engine to add collisions. I
+                        really like this engine structure, the ease of implementing the third dimension and rapier 3D’s
+                        physics shows how easy it is to expand the engine and add new components and systems for added
+                        functionality.
+                    </p>
+                    <img src = "Resources\ezgif-5-a67d4c6cb5.gif" alt = "A GIF showing the engine running a basic rigid body simulation">
+                    <p>
+                        I am really excited about this engine, its modularity and ease of expansion are very compelling
+                        and I look forward to working on it more. With any luck, I will probably make another post about
+                        it.
+                    </p>
+                    <p>
+                        So that’s a little look at what I have been working on. It’s funny – I have a collection of
+                        foundational game engines and frameworks, but no finished games to show for it. Part of the
+                        reason is that none of them are quite there yet, but another part is that I haven’t actually
+                        tried making a game within them. It’s a self-fulfilling prophecy. It doesn’t help that whenever
+                        I feel inspired to make games, I may try to use some lower-level framework that I have written,
+                        but I end up crawling back to the comforts and luxuries of Godot.
+                    </p>
+                    <p>
+                        However, after playing Animal Well recently, I am feeling quite inspired. Games that are
+                        astonishing in quality, yet grounded in technical achievability, are incredibly inspiring. If
+                        only I could imagine worlds as complex, stories as intricate, and levels as mind-boggling as the
+                        one Billy Basso imagined. The software itself doesn’t seem like the unachievable bit anymore.
+                    </p>
+                    <p>
+                        Anyway, I hope you enjoyed this little look into my mind and at a few projects I have been
+                        working on in the last several months!
+                    </p>
+
+                </div>log
             </div>
         </div>
     </div>
@@ -42,5 +300,4 @@
             <small>Leon Stansfield 2024</small>
         </div>
     </footer>
-</body>
-</html>
+    <script src="https://code.jquery.com/jquery-3.5
