@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../stylesheet.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -23,15 +26,68 @@
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
+                    <h1 class="blog-title mt-4">Particle based billboard clouds in Godot!</h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
-                    <p class="blog-meta">Posted on [Date] at [Time]</p>
+                    <p class="blog-meta">Posted on 16th Jun 2023</p>
                     <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
+                    <!-- Embedded youtube video here-->
+                    <iframe width="560" height="315" src="https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://www.youtube.com/watch%3Fv%3DsNXj0RN09ps" title="YouTube video player"
+                        frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen class="img-center"></iframe>
                     <!-- Post Content -->
-                    <p class="lead">Your blog post content here...</p>
+                    <p>This article originally written for the following video, and has been converted to article form.
+                    </p>
+                    <hr>
+                    <p>Hey, it’s been a while, but welcome to this leon mini, where I will run down how to create a
+                        similar effect to the clouds in tears of the kingdom in Godot 4, using particles!</p>
+                    <p>Using billboard particle effects can be a great and very efficient way to create cloud
+                        behaviours, avoiding the complexity and performance costs of volumetric effects!</p>
+                    <p>So, to get started, create a new particle effect. In the draw passes area, add a quad… This is
+                        where we are going to put our textures later. Next Ill set the lifetime to something long like
+                        30 seconds and explosiveness to 0.98. This means our particles wont all spawn at once making it
+                        a bit less jarring to watch. Also, I’m going to change the amount to 50. Next, we need to tweak
+                        the process material. Turn gravity off because clouds ignore gravity. and set the emission shape
+                        to a box. This way, the particles will randomly spawn inside the box, giving each cloud a unique
+                        shape. I’m going to set these to 7 * 3 * 5.</p>
+                    <img src="Resources\cloud_1.webp" alt="particle settings" class="img-center">
+                    <p>These are all the settings you need to change for the particles!</p>
+                    <p>Now, let’s make those quads a bit bigger and give them some material love. The material is going
+                        to need transparency set to alpha, so we can see through the transparent bits of the cloud. And
+                        under shading I am going to set the cloud to unshaded. This helps massively for the materials
+                        fragment shader as it is much less calculations for the transparency when multiple
+                        semi-transparent particles are layered on screen. Next up, we need to throw our cloud texture
+                        onto the particles. I got this texture from open game assets, linked in the description, and
+                        have edited it to be a bit whiter. Cool, now we have something that looks like a cloud! To make
+                        it look good from all angles, we just turn billboarding on, and I am just going to change the
+                        box extents to make it a bit denser.</p>
+                    <img src="Resources\cloud_2.webp" alt="material settings" class="img-center">
+                    <p>These are all the material settings you need!</p>
+                    <p>OK, so we have a single cloud. Absolutely beautiful. But it might be useful to create a system
+                        that automatically populates a scene or area with a bunch of clouds to really sell those sky
+                        islands.</p>
+                    <p>To start off, I am going to user a CGSBox3D. This is so that in the editor, we can easily edit
+                        the bounds of where the clouds will be spawned using the boxes side. Obviously, we don’t want to
+                        render it, so add a material to the box and set it to unshaded, transparency on and the albedos
+                        alpha to zero.</p>
+                        <img src="Resources\cloud_4.webp" alt="The godot editor showing the bounding box" class="img-center">
+                    <p>Add a script to the box called cloud spawner. In here, we need two variables, the number of
+                        clouds we will spawn and the cloud itself as a packed scene. We then want a function called
+                        spawn clouds which I will call in ready. In spawn clouds, we want to loop through each of the
+                        clouds we want to spawn, using this while loop. We want to pick a random position for where the
+                        clouds will spawn inside our box, which we will do using a random number generator to pick an x,
+                        y and z value inside the box bounds, and finally, we want to spawn a cloud at that position
+                        using the instantiate function on our cloud packed scene. We then call add child and set the
+                        clouds position to the random spawn position we picked earlier.</p>
+                        <img src="Resources\cloud_3.webp" alt="Code samples for spawning the clouds" class="img-center">
+                    <p>And there you go! Billboard clouds beautifully drifting through your scenes in Godot 4!</p>
+                    <p>May your winds be high, and your skies be cloudy. Fly safe.</p>
+                    <img src="Resources\2023-06-16-12-19-59-1.webp" alt="A gif showing the end results of the clouds" class="img-center">
+                    <hr>
+                    <h2>Resources:</h2>
+                    <p><a href="https://github.com/LeonStansfield/Clouds">Repository</a></p>
+                    <p><a href="https://opengameart.org/content/clouds-with-transparency">Cloud texture</a></p>
                 </div>
             </div>
         </div>
@@ -43,4 +99,5 @@
         </div>
     </footer>
 </body>
+
 </html>

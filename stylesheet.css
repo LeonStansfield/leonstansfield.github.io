@@ -63,6 +63,7 @@ a:hover, a:focus {
 .card-img-top {
     max-height: 600px;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .img-center {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../stylesheet.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -23,15 +26,82 @@
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
+                    <h1 class="blog-title mt-4">Using 3D cellular automata to create unique procedural island shapes
+                    </h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
-                    <p class="blog-meta">Posted on [Date] at [Time]</p>
-                    <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
+                    <p class="blog-meta">Posted on 21st Jul 2023</p>
                     <!-- Post Content -->
-                    <p class="lead">Your blog post content here...</p>
+                    <img src="Resources\image-3.webp" class="img-center" alt="A demo of an island generated with my technique">
+                    <p>Over the last two weeks, I decided to work on something new. I had a little idea for a relaxing
+                        game about decorating procedural islands. This blog post is the result of that work as I
+                        developed my own 3D cellular automata system that generates unique island shapes for use in my
+                        game. In this blog, I will go over how my system works and the process of overcoming performance
+                        issues when building it. I implemented this using GDScript in the Godot game engine, but the
+                        concepts can be used in any 3D engine or framework.</p>
+                    <p>So what is procedural generation and how can we use cellular automata to generate things?
+                        Procedural generation is simply generating content using code or maths, as opposed to manually
+                        creating assets by hand. Anything can be procedural, terrain, assets, animations, and so on.
+                        Cellular automata is a model of computation based around a grid of cells that hold values. The
+                        cells can change over many iterations based on the values they hold and the values held on their
+                        neighboring cells. This can be very useful for creating unique and interesting patterns and
+                        shapes or in my case 3D islands.</p>
+                    <img src="Resources\Screenshot 2024-06-23 132358.png" class="img-center" alt="Cellular Automata Examples">
+                    <p>Some interesting patterns and shapes created using 2D cellular automata.</p>
+                    <h2>The theory</h2>
+                    <p>Ok, so I want to create a cellular automata system in 3D that will consistently create unique
+                        blobby island shapes. Let’s get into it.</p>
+                    <p>At a base level, the process is quite simple. First, we create a grid. We can loop through a
+                        vector of our desired size and initialize each value to zero.</p>
+                    <img src="Resources\image.png" class="img-center" alt="Psuedo code example for the voxel grid">
+                    <p>Then we can randomize our grid, setting each value to either alive or dead at based on a random
+                        chance that can be altered for different results.</p>
+                    <p>Then, for each iteration, we need to loop through our grid, and for each cell, check how many
+                        neighbors it has. If it is above a certain amount of neighbors we can make sure the cell is
+                        alive, if not, we can kill the cell. Finally, we can ‘draw’ the grid, by placing blocks in the
+                        relevant places. This can be done just once at the end, but I decided to do this every iteration
+                        as the effect of seeing the island take shape is pretty interesting.</p>
+                    <img src="Resources\image-1.png" class="img-center" alt="Psuedo code example for updating the voxel grid">
+                    <h2>Optimisations</h2>
+                    <p>Nice, so that’s nice and simple conceptually but after my first implementation, I was running
+                        into some performance issues. We are attempting to loop through 15625 blocks multiple times each
+                        iteration, doing many checks, looking up values in arrays, and spawning and deleting blocks in
+                        the 3D scene each loop. We can optimize this a bit.</p>
+                    <p>The first thing to optimize was the count_alive_neighbors function. Initially, I was looping
+                        through the entire grid and checking if it was both a neighbor of the current block and alive
+                        each time I wanted to count the neighbors. I changed this so that the code stored an array of
+                        each of the 26 directions. We can then just loop through each of the directions from the block’s
+                        position and check if each one is alive or not.</p>
+                    <img src="Resources\image-2.png" class="img-center" alt="A code sample showing the code for the count alive neighbours and gen neighbors functions">
+                    <p>The next optimization is a big one. The draw grid function initially would loop through each
+                        value in the grid and depending on whether it needed to have a block spawned or not, it would
+                        spawn the block and append it to an array that had references to all the blocks in the scene.
+                        This was very slow as the program had to frequently check through the entire array of blocks to
+                        see if a block existed or not. To optimize this, I replaced the blocks array with a dictionary.
+                        So instead of iterating through the blocks array each time we wanted to check if a block exists,
+                        delete a block or create a block, we can just check the block dictionary to quickly check if a
+                        block exists or not. When creating a block we can just add the block and position to the
+                        dictionary, and when removing a block we can simply find it in the dictionary and remove it from
+                        the scene. This meant the time complexity of looking up a block went from O(n) to O(1). This
+                        single change alone increased the speed of drawing the grid from around 30-40 seconds to just
+                        2-3 seconds.</p>
+                    <h2>Tweaking</h2>
+                    <p>Now I have a system for creating 3D cellular automata islands that are relatively efficient. I
+                        just need to tweak it to provide the results I want. Luckily, we can change a bunch of different
+                        values in my algorithm to get different results. For example, changing the spawn chance can
+                        alter how large the blobs of the island are. Changing the number of iterations alters how smooth
+                        each island is. Changing the number of neighbors required will change how fast each island
+                        erodes down.</p>
+                    <img src="Resources\ezgif-3-b35dfc83ec.gif" class="img-center" alt="A gif demonstrating the generation of islands">
+                    <h2>Conclusion</h2>
+                    <p>I hope this blog post was helpful if you are wanting to implement your own 3D cellular automata
+                        system. If you want to see the full project files for my implementation, please see the
+                        following <a href="https://github.com/LeonStansfield/3D_cellular_automata">repository</a>.</p>
+                    <p>I have expanded on my 3D cellular automata system in my small game Campscape. In the game, you
+                        can generate islands and modify and decorate them as you like. The game is playable and can be
+                        downloaded from my itch page <a href="https://leon-stansfield.itch.io/campscape">here</a>.</p>
+                        <img src="Resources\leonstansfield0-1671192636449775617.gif" class="img-center" alt="A gif showing an island being generated">
                 </div>
             </div>
         </div>
@@ -43,4 +113,5 @@
         </div>
     </footer>
 </body>
+
 </html>
