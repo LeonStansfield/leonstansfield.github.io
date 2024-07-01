@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,127 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../stylesheet.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
+
     <!-- Page Content -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
+                    <h1 class="blog-title mt-4">Getting from zero to a playable demo of my speed-running game</h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
-                    <p class="blog-meta">Posted on [Date] at [Time]</p>
+                    <p class="blog-meta">Posted on 17th Jun 2023</p>
                     <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
+                    <img class="img-fluid rounded" src="Resources\fxex3epwcaedqdt-2.webp" alt="A screenshot from the game">
                     <!-- Post Content -->
-                    <p class="lead">Your blog post content here...</p>
+                    <p class="lead">Have you ever had an image of a game sit in your head so strong you just had to make
+                        it? Well I did, and that image could be described as ‘what if the sky islands from tears of the
+                        kingdom were a speed running movement game’. In this blog post, I’ll take you on a journey from
+                        the initial idea to the creation of a playable demo for my speed running game Sky Runner. Let’s
+                        dive in and explore the steps I took to bring my vision to life.</p>
+                    <p>Here is a <a href="https://leon-stansfield.itch.io/sky-runner">link</a> to the demo so you can give it a try yourself!</p>
+
+                    <h2>Conceptualisation</h2>
+                    <p>For most of my game ideas, I start with what feels like a screenshot in my brain and expand on
+                        what that could become. It is the same for this game. I had a distinct image of a first person
+                        speed running/platforming game similar to neon white set in the lush sky islands of tears of the
+                        kingdom. I wrote in a notebook a bunch of ideas of where I could take the game. This included
+                        listing as mechanics, level sketches, and some terrible concept art sketches. I wanted the game
+                        to very much focus on fast paced movement in 3D environments, falling, jumping and running
+                        through the sky making split second decisions. As well as this, I wrote down what limitations I
+                        wanted to stick to to prevent scope creep. For example, as much as I would love to create
+                        something like breath of the wild 3, I decided I was going to stick to very linear level design
+                        with level by level progression to ensure I wont be working on the project for another decade.
+                    </p>
+
+                    <h2>Designing some mechanics</h2>
+                    <p>The first thing I approached was a character controller. I wanted to prototype some ways that a
+                        player can move through a 3D environment that would be fun.</p>
+                    <p>Ultimately from my notes, I settled on the dash which would launch the player horizontally, a
+                        grapple mechanic, letting the player zip to any surface in range, a bounce pad to help the
+                        player gain altitude and a gravity dive, to help the player fly downwards. Prototyping is
+                        incredibly fun and I created some really fun ways to play very quickly. Generally speaking, you
+                        know a mechanic is good fun when playing around with it is distracting you from working on the
+                        rest of a project, so that was a positive from the get go.</p>
+                    <p>While continuing to work I added some game juice and implementing important UI to signal
+                        important information to the player. This included these speed lines to help emphasise the
+                        players speed and a modified version of the speed lines for the dash effect. I also added some
+                        UI icons to indicate weather the dash and grapple were currently usable, as well as some
+                        particles for when the states are changing to make it stand out to the player.</p>
+                    <p>Sound design is very important for game design, so I invested time in creating and adding some
+                        satisfying sound effects I made by mixing and modifying audio samples and synthesized sounds.
+                        Finally to help improve the vibe of a speed running game, I composed some 170BPM jungle music to
+                        keep the player hyped up. Music composition is something I am not a massive fan of as it is not
+                        really my field, but the fast drum beats I created work well in the game and don’t sound
+                        terrible I think.</p>
+                    <p>Its important to note that a lot of this polish was done in parallel with designing the levels
+                        and rest of the game, but I don’t think it makes sense to tell it chronologically as that would
+                        be a bit of a mess to read.</p>
+
+                    <h2>Level design and progression</h2>
+                    <p>When designing the 13 short levels in the game, I knew it was important to introduce each
+                        mechanic individually and teach the player how to use each mechanic through play. To do this I
+                        followed a 3 step approach:</p>
+                    <ul>
+                        <li>Introduce the mechanic in a simple, safe and controlled environment.</li>
+                        <li>Show the mechanic in a different environment.</li>
+                        <li>Show the environment in a more complex environment, mixing it with other mechanics to show
+                            what can be done.</li>
+                    </ul>
+                    <p>You can see this approach in every mechanic I introduce. For example, with the grapple, it is
+                        given a very basic use case, followed by a different case to show the player other ways it can
+                        be used. I then demonstrate the mechanic chained together followed by a final dash. Many players
+                        will fail at that initially but as they retry, they will learn the mechanic further, preparing
+                        them for more difficult challenges in the game.</p>
+                    <p>As well as this, I wanted to make sure that the game had a variety of fun levels mixing all
+                        mechanics once they had been learned. To do this, I took a tip from mark brown and created a
+                        table with all mechanics, ensuring there were combinations of all of them. I then got to mess
+                        about throwing many ideas at the wall to see what sticks, some did, some didn’t. This helped me
+                        create a large amount of levels that were fun to play, about half the levels I created were
+                        scrapped which is always a pain sometimes after hours tying to make work, but sometimes, ideas
+                        just weren’t fun to start with and its better to focus the energy on something that works well.
+                    </p>
+                    <p>Another incredibly important part of level design was playtesting. It helped immensely to sit and
+                        watch friends play through the game to see if they were able to figure out mechanics by
+                        themselves and read levels to understand where they are required to go. This lead to tens, if
+                        not hundreds of micro adjustments in level design, the way tutorials are laid out, UI changes
+                        and of course bug fixes to ensure the game is well designed.</p>
+
+                    <h2>Preparing to publish</h2>
+                    <p>The Final phase before publishing the demo mostly consisted of creating and polishing UI as well
+                        as continuing to adjust levels after playtest sessions (of which I had 3, each with different
+                        friends to ensure none had experienced the game before hand) I created the main menu, options
+                        menu, level selection menu, pause menu and continued to refine the gameplay UI and tutorial UI
+                        and made the UI theme to display on all UI elements. Yeah games just have a bunch of UI and none
+                        of it is that fun to be program. Some challenges I ran into were around UI management.</p>
+                    <p>Due to poor decisions towards the start of the project I had several very messy and hard to read
+                        scripts with hardcoded events controlling all the UI at once. This became unusable if I wanted
+                        to change anything later on, so I had to spend a week refactoring much of the UI management code
+                        to be more readable, reusable and modular. This was tedious but very worth it especially when
+                        coming to write the main menu screens. Even after this UI management is something I would like
+                        to get better at in future projects.</p>
+                    <p>As well as this, I prepared this post, the itch page and a trailer for my YouTube as well as
+                        places to receive further feedback on the game (for both bugs and game design feedback).</p>
+                    <p>In this post, I have rundown the process of bringing sky runners to life, from conceptualisation,
+                        to my level design process to polishing and release. The entire process has been full of
+                        learning further about game design and managing complex projects using the Godot engine. I
+                        eagerly anticipate sharing Sky Runner with the gaming community, hoping to gather valuable
+                        feedback to further enhance the game.</p>
+                    <p>Play the game <a href="https://leon-stansfield.itch.io/sky-runner">here</a> to try it yourself!</p>
                 </div>
             </div>
         </div>
@@ -43,4 +140,5 @@
         </div>
     </footer>
 </body>
+
 </html>
