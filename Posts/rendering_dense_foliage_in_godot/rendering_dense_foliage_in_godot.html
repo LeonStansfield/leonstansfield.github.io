@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,31 +8,130 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../stylesheet.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
     </nav>
+    <!-- Page Content -->
+
     <!-- Page Content -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
+                    <h1 class="blog-title mt-4">How to render millions of blades of grass efficiently in Godot!</h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
-                    <p class="blog-meta">Posted on [Date] at [Time]</p>
+                    <p class="blog-meta">Posted on 26th Feb 2023</p>
                     <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
+                    <iframe width="560" height="315"
+                        src="https://www.youtube.com/watch?v=z_Q0sA3wE10"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen class="img-center"></iframe>
                     <!-- Post Content -->
-                    <p class="lead">Your blog post content here...</p>
+                    <p>This Blog post was adapted from my video on the same topic <a href="https://www.youtube.com/watch?v=Y0Ko0kvwfgA">here</a></p>
+                    <p>I don't know about you, but when I saw 2018 game of the year The Legend of Zelda: Breath of the
+                        Wild's grass beautifully rendered on a device that fits in my hands… the first thought that came
+                        to mind was… how can that be done in Godot? So, I am going to go over everything you need to
+                        know about rendering dense and beautiful foliage in Godot. The first section goes over some of
+                        the techniques other game engines and Godot use to render large amounts of grass and the second
+                        part goes over how to use some of the premade tools and plugins which you can use for grass in
+                        Godot. I even have my friend Nekoto speak about his own techniques and plugin for rendering
+                        grass, so stick around for that.</p>
+                    <p>Also… this isn’t a shader tutorial, but I will link the shaders and tools I do end up using.</p>
+                    <h2>Intro to Draw Calls</h2>
+                    <p>Modern computers are great. They can do literally billions of operations per second. But they do
+                        have their limitations. For each normal mesh on the screen, the CPU must calculate the
+                        animations and physics of the object and then pass that to the GPU so it can render it to your
+                        screen. This process of passing data from the CPU to the GPU is called a draw call… and they are
+                        quite expensive.</p>
+                    <p>Luckily… There is a workaround.</p>
+                    <p>GPU instancing is when the entire process of instancing, animating and rendering the grass is
+                        done on the GPU, with no communication to the CPU. This is super useful for rendering large
+                        amounts of the same objects, such as grass, as it means there is no bottleneck in the
+                        communication between the CPU and GPU, usually being just one draw call for the entire lot.</p>
+                    <p>It isn’t a perfect solution however. Since the CPU isn’t involved with the instancing of the
+                        objects, it basically doesn’t exist according to the CPU, making things like adding physics,
+                        collisions or other interactions and logic impossible… mostly.</p>
+                    <p>I highly recommend the <a href="https://www.youtube.com/watch?v=Y0Ko0kvwfgA">grass series</a>by Acerola who goes over the details of GPU instancing,
+                        frustum culling, draw distance and other techniques to render dense fields of grass. Acerola
+                        does this in Unity but the concepts are the same and the videos are very entertaining.</p>
+                    <h2>Reducing Draw Calls</h2>
+                    <p>Anyway… so how can we reduce our draw calls? Godot uses something called a MultiMeshInstance. A
+                        MultiMeshInstance is a single object that can render up to millions of a single mesh or objects
+                        in one go, and all in one draw call. MultiMeshInstances have many of the benefits of GPU
+                        instancing, since it all counts as one object it only takes one draw call making it very
+                        efficient. Unfortunately, it has a few extra drawbacks. One of these is that while frustum
+                        culling (stopping rendering objects outside the field of view of your camera) does work… it only
+                        works when all the objects in the instance are out of view, meaning you could have only one
+                        blade of grass in view, but the entire patch of 1 million blades will still be rendered. A
+                        workaround for this would be to use multiple smaller MultiMeshInstances to balance draw calls
+                        with the number of polygons drawn, similar to a chunking system.</p>
+                    <p>Secondly, MultiMeshInstances also require you to place each mesh using your CPU, so the positions
+                        buffer (which is where the transforms for each blade of grass is stored) is technically not on
+                        the GPU at all. However, MultiMeshInstances can also execute logic through shaders which is
+                        handy for faking interaction. For example, using your player's coordinates to implement
+                        interactive grass in the vertex shader.</p>
+                    <h2>The Plugin</h2>
+                    <p>Ok, so that's how Godot renders millions of meshes at once… but I hear you asking… Leon?? That's
+                        not helpful… how do I create grass like in 2018 game of the year The Legend of Zelda: Breath of
+                        the Wild using the Godot game engine? Luckily there are a few tools and handy plugins to help
+                        make beautiful patches of grass. The first tool I'm going to show you is <a href="https://github.com/HungryProton/scatter">Scatter</a>. Scatter is a
+                        plugin made by HungryProton, and is the go-to for beautiful grass in small-medium scenes.
+                        Scatter uses MultiMeshInstances and can create very dense and custom patches of grass using its
+                        3D curve editor and array of modifiers such as removing from a path, projecting on the floor and
+                        randomize transform modifiers.</p>
+                    <p>To install Scatter, download the GitHub repository and extract it to your addons folder. Make
+                        sure to change the file name to scatter and activate the plugin in the project settings. You can
+                        then go ahead and add the scatter node to the scene. You will need to add a scatter item node as
+                        a child and then assign your grass in the item path parameter… in my case it's this simple 5
+                        vertex grass blade model.</p>
+                    <p>As well as this, you will need to add some modifiers. In my case, I’m using a distribute inside
+                        grid to distribute the grass evenly, a randomized scale modifier to give it some height
+                        variation and a project on floor modifier to snap the grass to my mesh. Finally, you can draw
+                        the area you want your grass! Scatter can get slow to edit with lots of 3D curve points, and
+                        lots of grass, so I recommend turning down your grass count while you edit.</p>
+                    <p>A short side note on shaders… The built-in shaders and grass models in Scatter are very nice.
+                        With some nice wavy movements. I am using <a href="https://godotshaders.com/shader/stylized-grass-with-wind-and-deformation/">this grass shader</a> this grass shader. To add some
+                        player interaction and deformation, make your grass blade a child of a spatial node and add <a href="https://github.com/GDQuest/godot-shaders/blob/master/godot/Demos/WindGrass/GrassMesh.gd">this script</a>. 
+                        Then assign your player in the script. This will deform the grass around the player's
+                        coordinates for any mesh using this shader material, which includes all of the grass instanced
+                        by the Scatter plugin. Notice how I only need to apply the material to the one grass blade and
+                        it updates all of the grass in my scene.</p>
+                    <p>Voila… a beautiful dense patch of grass! There is a slight problem however. If we make our patch
+                        super big, it becomes much less efficient since frustum culling will only work when all blades
+                        of grass are out of view from the camera. A simple solution for this would be to make multiple
+                        smaller patches, or chunks, of grass. I find a nice balance is to make them around 10-30 meters
+                        squared per chunk.</p>
+                    <p>As well as this, we don’t need to be rendering grass super far away from the player. We can build
+                        a basic chunking system to keep this under control. To do this, I have added a spatial node, and
+                        made each chunk of grass a child of that node. I then added the following script. This script
+                        will make an array of our grass patches, and cull them if they are further than our maximum
+                        render distance. Remember, since this can’t cull individual grass blades, it can only cull
+                        entire chunks of grass, so there isn’t a smooth edge where the grass ends, rather it is a blocky
+                        edge. Also, this chunking system can be quite expensive when you have lots of patches of grass,
+                        so I recommend setting the for loop to a timer as it does not need to be run every frame.</p>
+                    <p>So that’s the Scatter tool! It’s brilliant for small scenes and I explored a few options for
+                        medium-sized scenes. However, due to its slow performance around editing the 3D curves and
+                        chunking, I would not recommend using this system for large scenes… There are many many more
+                        systems that would need to be in place to keep performance under control which Godot just
+                        doesn’t have and isn’t built for.</p>
+                    <h2>Outro</h2>
+                        <p>And there you have it… I hope you enjoyed my run down of how grass systems work in Godot, and how
+                        you too can make great dense patches of grass in a somewhat performant manner, and we are all
+                        one step closed to breath of wild in godot.</p>
+                    <img class="img-fluid rounded" src="Resources\thumbnail-2.webp" alt="A screenshot of the grass">
                 </div>
             </div>
         </div>
@@ -43,4 +143,5 @@
         </div>
     </footer>
 </body>
+
 </html>

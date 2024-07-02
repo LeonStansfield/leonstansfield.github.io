@@ -25,24 +25,16 @@ You are an ai automation tool designed to help me convert my wordpress blogs to 
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">Inspired by Studio Ghibli: My 3D Art Journey</h1>
+                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
                     <p class="blog-meta">Posted on [Date] at [Time]</p>
                     <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="Studio Ghibli Inspired Art">
+                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
                     <!-- Post Content -->
-                    <p>This project was inspired by the beautiful hand drawn films by Studio Ghibli. I wanted to capture the feeling when your train escapes the city and you see oceans of green flying by at 120 miles per hour.</p>
-                    <p>A frame from Studio Ghibli's ‘Howl's Moving Castle’, a massive inspiration for the piece.</p>
-                    <p>I started by creating a ‘sketch’ render, a render which uses a bunch of crappy pre-made assets just so I can get my idea down on the page. As you can see, originally I planned on focusing on having many cherry blossom trees, whizzing past the camera. This idea fell through later on as I felt it didn’t fit my own experiences.</p>
-                    <p>Once the sketch was done, I jumped into creating some procedural material bases to capture the hand-painted aesthetic of Ghibli films. This consisted of a bunch of different Voronoi and noise textures combined together to give the impression of a material made from splodges and brushes of paint, with little imperfections such as purple splashes, where watercolours may have been spilled and soaked into the material. The result is something I am very pleased with and the technique is used in more than half of the materials in the scene.</p>
-                    <p>I opted to use the toon BSDF with cycles as I thought the two-tone shaded look of the toon shader fitted the aesthetic, but still wanted to take advantage of nice soft shadows and realistic global illumination, as well as Blender’s built-in sky materials.</p>
-                    <p>Next up, I began work on the world. Utilizing the same tricks for my mountain material, as well as the ANT landscape Blender plugin, I generated a mountain and some hair particles for my grass.</p>
-                    <p>The train itself was the next problem to tackle, so I got modeling. I ended up learning a bunch of new things and using tools I haven't used before for the train, such as the boolean cut, quick smoke and gas simulations as well as learning new things about topology to model more with less and more usable geometry.</p>
-                    <p>By this point, the scene was feeling fairly complete, but still needed a lot of polish to get it off the ground. I started by replacing the old environment with something a little more vibrant, as well as raising the color saturation away from the more pastel palette I was using before, to better match my reference Ghibli screenshots. As well as this, I felt the environment had too much negative space and didn’t have much to say, so I added some more mountains in the background to add some depth to the world, as well as a small house, similar to the one Howl steps out of in Howl’s Moving Castle, in hopes for the viewer to think more about who may be living in the world. Additionally, I generated a fluffy hand-painted cloud in Stable Diffusion to help fill out the background. All these changes made a massive difference to the feel of the scene and left me feeling pleased with what I had made.</p>
-                    <p>And there you have it! My aim was to capture the tranquility and excitement of traveling by train and speeding through the countryside as well as some of the nostalgia for watching some of the classic animated films as a child, and, at least for myself, I have done that! I have learned so much about 3D during the challenge, especially in creating procedural materials as well as modeling and topology. It would be an absolute pleasure to be featured in the compilation video!</p>
-                    <p>This is my first attempt at creating a more portfolio-style post, showing off my workflow and result. My writing skills in this area are honestly not the best but hopefully will get better.</p>
+                    <p>Your blog post content here...</p>
+                    <img class="img-fluid rounded" src="" alt="">
                 </div>
             </div>
         </div>
