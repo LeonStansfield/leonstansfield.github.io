@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +8,14 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../../stylesheet.css">
 </head>
+
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
         </div>
@@ -23,15 +26,87 @@
             <div class="col-lg-12">
                 <div class="blog-content">
                     <!-- Blog Post Section -->
-                    <h1 class="blog-title mt-4">New Blog Post Title</h1>
+                    <h1 class="blog-title mt-4">How to make 3D pixel art in Godot!</h1>
                     <!-- Author -->
                     <p class="blog-meta lead">by Leon Stansfield</p>
                     <!-- Date/Time -->
-                    <p class="blog-meta">Posted on [Date] at [Time]</p>
+                    <p class="blog-meta">Posted on 28th Feb 2023</p>
                     <!-- Preview Image -->
-                    <img class="img-fluid rounded" src="http://placehold.it/900x300" alt="...">
+                    <iframe width="560" height="315"
+                        src="https://www.youtube.com/watch?embeds_referring_euri=https%3A%2F%2Fleonstansfield208.wordpress.com%2F&source_ve_path=Mjg2NjQsMTY0NTAz&feature=emb_share&v=qRAeiwTA7qs"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen class="img-center"></iframe>
                     <!-- Post Content -->
-                    <p class="lead">Your blog post content here...</p>
+                    <p>I love pixel art… I love looking at pixel art, I love making pixel art. Pixel art is great. But
+                        do you know what would be even greater? 3D pixel art. We have seen the effect in games like A
+                        Short Hike (which by the way, is the game that got me into development, after loving the game
+                        and watching Adam's postmortem I decided to give the ol’ Unity a try), but firstly, how is this
+                        done in Godot, and how can we take some of the core concepts of what makes pixel art pixel art
+                        and apply them as well?</p>
+                    <h2>Pixelation</h2>
+                    <p>Ok so first up is the most obvious… pixelation. Luckily Godot has a really easy-to-use built-in
+                        option for this. First up, head to project settings, and then under the display and then window
+                        settings you will notice 2 sets of boxes, 1 for the width and height that the engine will render
+                        and the other called ‘test width/height’ which will be the size of our window. We want to change
+                        the test resolution to our default window resolution of 1024*600 and then set our width and
+                        height as our pixel art resolution. In my case that’s 512*288, but it’s up to you, 256*144 is
+                        another great size for chunkier pixels. We also need to head down to the stretch options and set
+                        the mode to viewport and aspect to keep to prevent our pixels being stretched when the window is
+                        moved around.</p>
+                    <p>Awesome! So now when we run our scene we get some nice chunky pixels!</p>
+                    <img class="img-fluid rounded" src="Resources\screenshot-2023-02-27-235949.webp" alt="A screenshot of a pixelated scene in godot">
+                    <h2>Palette Limitation</h2>
+                    <p>What… You're saying that pixel art is more than just downresing a 3D render!!! Are you
+                        gatekeeping art! Disgraceful… but no problem, to many, pixel art is more than just chunky pixels
+                        on a screen. Colour is just as important. The vast majority of pixel art is done using a limited
+                        colour palette, so we too will need to achieve that too. To start off I will change all my
+                        materials to use Godot's built-in toon shader. This will mean objects will mostly only have two
+                        sets of colours, their lit colours and their shaded colours which will help when we are limiting
+                        the colours drawn to the screen. To do this just go to the properties of each material and under
+                        diffuse and specular mode swap them for toon, then set the roughness to 0 and metallic to 0.5. I
+                        have no idea how these shaders work but my friend Nekoto has a great tutorial on their own toon
+                        shader in the style of Breath of the Wild. As well as this I will let you know I am using an
+                        orthogonal camera projection.</p>
+                    <p>This means things further away from the camera will not appear further away and is quite a common
+                        way for pixel art to be drawn, also I just think it looks nice with this top down projection.
+                        Ok, so now that's done we can work on our palette limiting shader. To be clear, I didn’t make
+                        this either, it's taken straight from TheBuffEd’s video (linked in the description), but
+                        essentially, we have a list of colours, with each number in the vector 4 representing the RGBA
+                        values but on a scale of 0-1 instead of 0-256. In the fragment function for each pixel we store
+                        the current colour of the pixel, then loop through all the colours in our list to find the
+                        colour with the minimum difference in colour, we then set the pixel to that colour. I highly
+                        recommend watching their video, it's super quick and they explain it better than I can.</p>
+                    <img class="img-fluid rounded" src="Resources\screenshot-2023-02-28-000101.png" alt="A screenshot of a scene rendered in its limited palletes">
+                    <p>I am using the Apollo palette I found on Lospec, so I had to divide the RGBA values by 256 and
+                        add them to this list, which took a good while, but honestly I’d rather spend 1 hour doing
+                        something than 6 failing to automate it.</p>
+                    <p>So now we can just add this shader to a sprite 2D that covers the whole viewport, it doesn’t
+                        matter what the sprite actually is, and make sure it's at the top of our node tree. Overall this
+                        is a really nice effect. It's important to note that changing anything about the environment
+                        lights can change the look of the game significantly. I recommend having a single directional
+                        light for shadows and setting the ambient light to have 0 sky contributions and a plain white
+                        ambient colour.</p>
+                    <img class="img-fluid rounded" src="Resources\screenshot-2023-02-28-000157.png" alt="A screenshot of a scene rendered in its limited palletes">
+                    <h2>Clouds</h2>
+                    <p>I really like how you can only see the grass around the edges of things, it looks very pixel
+                        arty. But I think adding some shadows of some clouds where you can properly see the grass would
+                        be nice. Once again, after trying a bit to do it myself, I ended up finding a shader user
+                        mightofmerchants made a couple years ago and thankfully published on Reddit. The shader
+                        essentially takes a noise texture, turns it into 2 noise textures, with the second one being
+                        time shifted, and then mixes them, with a threshold value deciding the cutoff value of the
+                        cloud. It then turns this into a texture which can cast a shadow.</p>
+                    <p>I set the Geometry cast shadow mode to ‘shadow only’ since my game will be top down so I do not
+                        need to render the clouds themselves.</p>
+                    <p>And that's it! Now we have a beautiful scene with some very nice 3D generated pixel art! It's not
+                        quite ‘hand drawn’ quality (I don’t think there's a lot that can be done about jaggies in 3D).
+                        Other improvements could include some toon shaded edges, but that's up to personal preference
+                        and I do think it looks really nice and the process has taught me even more about shaders… even
+                        though I still haven’t actually made any yet. I guess that just shows how great the Godot
+                        community is that I haven’t had to make any shaders yet. If you enjoyed this video please
+                        subscribe, I have more technical videos coming, but just wanted to make something about what I
+                        had been working the past week or so. Thanks for watching!</p>
+                    <img class="img-fluid rounded" src="Resources\screenshot-2023-02-27-235657.webp" alt="A screenshot of the final result">
                 </div>
             </div>
         </div>
@@ -43,4 +118,5 @@
         </div>
     </footer>
 </body>
+
 </html>
