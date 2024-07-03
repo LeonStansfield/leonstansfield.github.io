@@ -57,7 +57,7 @@
                     <h3>Bresenham's Line Algorithm</h3>
                     <p>To do this we need to figure out how to join our vertices with lines. Introducing Bresenham’s
                         line algorithm.</p>
-                    <img class="img-fluid rounded" src="Resources\image-1.png" alt="pikachu wireframe">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-1.png" alt="pikachu wireframe">
                     <p>Bresenham’s line algorithm will figure out exactly which pixels need to be colored between two 2D
                         points on our screen from (x1, y1) to (x1, y2) and don’t worry we will come back to the third Z
                         point later.</p>
@@ -74,29 +74,29 @@
                         The error is essentially how far away the actual line is away from the center of the pixel on
                         the screen. We calculate this by taking the Y position of the line and subtracting the Y value
                         of the next pixel.</p>
-                    <img class="img-fluid rounded" src="Resources\image-2.webp" alt="tutorial image 1">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-2.webp" alt="tutorial image 1">
                     <p>We check the error for the pixel to the right of our current pixel and if the error is larger
                         than one half, we go to the top right. If the error is less than one half it’s best to just go
                         right.</p>
                     <p>So in this example the error is less than one half so we just fill the pixel to the right.</p>
-                    <img class="img-fluid rounded" src="Resources\image-3.webp" alt="tutorial image 2">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-3.webp" alt="tutorial image 2">
                     <p>But in this example the error is more than one half, so we fill the pixel to the top right.</p>
-                    <img class="img-fluid rounded" src="Resources\image-4.webp" alt="tutorial image 3">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-4.webp" alt="tutorial image 3">
                     <p>Now we know where to draw the next pixel for each point in our line so we can just do it over and
                         over again until the line is complete.</p>
-                    <img class="img-fluid rounded" src="Resources\image-5.webp" alt="tutorial image 4">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-5.webp" alt="tutorial image 4">
                     <p>One important thing about the algorithm is that it uses only additions and subtractions to
                         calculate all this making it faster than other algorithms which use more expensive divisions.
                     </p>
                     <p>Now if we apply the algorithm for all the X and Y vertices in a mesh ignoring the Z axis, we get
                         this:</p>
-                    <img class="img-fluid rounded" src="Resources\image-7.png" alt="tutorial image 5">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-7.png" alt="tutorial image 5">
                     <h3>Rasterisation</h3>
                     <p>Next up, we need to figure out how to fill these triangles in. Unfortunately that is easier said
                         than done.</p>
                     <p>To understand this we will start with just one triangle that has the points A, B, and C. We can
                         start by just drawing lines between each point using the algorithm.</p>
-                    <img class="img-fluid rounded" src="Resources\image-8.webp" alt="Wireframe image of an emoji">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-8.webp" alt="Wireframe image of an emoji">
                     <p>In order to fill in the triangle we’re going to need to start by saving all the pixels on our
                         lines in a list.</p>
                     <p>To do this we will save each X position with the same Y position. So for Y8 there are two pixels,
@@ -106,18 +106,18 @@
                         access all of the X-coordinates around the edge of the triangle with their associated
                         Y-coordinate. This makes it super easy to fill in our triangle using the line algorithm. All we
                         have to do is draw a line between the first and last X-coordinate for each Y-value.</p>
-                    <img class="img-fluid rounded" src="Resources\image-9.webp" alt="tutorial image 6">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-9.webp" alt="tutorial image 6">
                     <p>So for the first line Y8 we draw a line between the coordinates (5, 8) and (6, 8) which doesn’t
                         actually do anything because there isn’t a gap. Same for the pixels we draw at Y7. For Y6 we
                         draw between the coordinates (4, 6) and (7, 6) which fill in two pixels. We just carry this on
                         until the triangle is filled.</p>
-                    <img class="img-fluid rounded" src="Resources\image-11.webp" alt="tutorial image 7">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-11.webp" alt="tutorial image 7">
                     <p>This algorithm is called the line sweep algorithm because it sweeps down each triangle from top
                         to bottom. There are many other techniques which are used to rasterize triangles and I’m sure
                         others are much faster but this one was definitely the easiest for me to understand.</p>
                     <p>Cool, so now we know how to draw a single triangle we can just do this for all of the triangles
                         in our mesh.</p>
-                    <img class="img-fluid rounded" src="Resources\image-12.png" alt="Rasterized image of an emoji">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-12.png" alt="Rasterized image of an emoji">
                     <h3>Shading</h3>
                     <p>Okay so at the minute all of our triangles are just being given a random color but we might want
                         to figure out how to shade our triangles using flat shading.</p>
@@ -125,7 +125,7 @@
                         basic rule with shading:</p>
                     <p>At the same light intensity each polygon is illuminated most brightly when it is facing the
                         direction of light.</p>
-                    <img class="img-fluid rounded" src="Resources\image-13.png" alt="tutorial image 8">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-13.png" alt="tutorial image 8">
                     <p>Essentially if I hold a light directly in front of a flat surface it will be at its brightest,
                         but if I hold a light directly to the side of a flat surface it will get no illumination. If I
                         hold it at an angle it will be somewhere in between.</p>
@@ -133,14 +133,14 @@
                         is coming from behind the polygon and therefore the polygon is invisible. Since we don’t need to
                         render invisible things we can just simply delete them before we actually render them. This
                         technique is called backface culling.</p>
-                    <img class="img-fluid rounded" src="Resources\image-14.png" alt="Shaded image of an emoji">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-14.png" alt="Shaded image of an emoji">
                     <h3>Hidden Face Removal</h3>
                     <p>You can’t see it on this model since it’s convex but for concave models, you would see artifacts
                         where triangles are not drawn in the correct order. The polygons are still drawn to the screen
                         since they still face the correct direction and therefore the back face culling doesn’t affect
                         them but there’s nothing to tell the computer not to render them because they’re behind other
                         polygons, like on this guy's mouth.</p>
-                    <img class="img-fluid rounded" src="Resources\image-15.png"
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-15.png"
                         alt="Shaded render of a man with no back face culling">
                     <p>Luckily there’s a fix to this with a process called hidden face removal which requires something
                         called the Z buffer. This technique will stop the computer from drawing polygons on top of one
@@ -153,13 +153,13 @@
                         previous one so we want to draw the new pixel to the screen.</p>
                     <p>For example, this green triangle Z depth is smaller than the Z depth of the blue triangle, so we
                         draw it in front of the blue triangle.</p>
-                    <img class="img-fluid rounded" src="Resources\image-16.webp" alt="tutorial image 9">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-16.webp" alt="tutorial image 9">
                     <p>However if there is a third triangle with a Z depth larger than the previous Z depth it means
                         that it’s behind those polygons and so we don’t draw it in front. Just like this yellow square
                         is behind the blue and green triangles.</p>
-                    <img class="img-fluid rounded" src="Resources\image-17.webp" alt="tutorial image 10">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-17.webp" alt="tutorial image 10">
                     <p>This helps fix our issues with concave shapes as all of our hidden faces are removed.</p>
-                    <img class="img-fluid rounded" src="Resources\image-18.png"
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-18.png"
                         alt="Shaded render of a man with no back face cullin">
                     <p>Okay so at this point we might feel satisfied with what we have.</p>
                     <p>If you are you shouldn’t be because we have completely forgotten about the third dimension until
@@ -173,7 +173,7 @@
                     <h3>Perspective Projection</h3>
                     <p>To apply perspective we need something called a frustum. This is a shape which we view all of our
                         objects inside of.</p>
-                    <img class="img-fluid rounded" src="Resources\image-19.png" alt="tutorial image 11">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-19.png" alt="tutorial image 11">
                     <p>It has a near plane, which is what we project our objects onto (think of this as the screen), and
                         a far plane, anything past the far plane will not be rendered.</p>
                     <p>To project the object in 3D space we would use the projection matrix. This can be rather
@@ -181,7 +181,7 @@
                         2D, where we’re going to figure out how to project onto our 1D near plane.</p>
                     <p>Let’s have a look at our example where Y<sub>s</sub> is going to be the perceived height of our
                         tree on our near plane from the viewpoint.</p>
-                    <img class="img-fluid rounded" src="Resources\image-21.webp" alt="tutorial image 12">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-21.webp" alt="tutorial image 12">
                     <p>We know that the side lengths of both the small and big triangle are proportional to one another
                         so in order to find Y<sub>s</sub> we can use the following equation. This shows that the
                         apparent height of the tree, Y<sub>s</sub>, is equivalent to the distance to the near plane, n,
@@ -191,14 +191,14 @@
                         our near plane from the camera’s position at the origin. We use the camera’s distance to the
                         near plane which is 2 in our case and multiply it by the object’s true height, which is 3.5,
                         then we divide it by the distance to the object and we find our perceived height is 1.</p>
-                    <img class="img-fluid rounded" src="Resources\image-22.webp" alt="tutorial image 13">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-22.webp" alt="tutorial image 13">
                     <p>If we check this by drawing a line, yep, 1.</p>
                     <p>So in order to do this in a game we would literally just do this for every vertex on every object
                         on our screen.</p>
                     <p>Awesome!</p>
                     <p>And here’s a comparison of the two projection types in the scene with a lot more depth just to
                         drive home how much of a difference this makes.</p>
-                    <img class="img-fluid rounded" src="Resources\image-23.webp"
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-23.webp"
                         alt="Orthogonal vs perspective comparison">
                     <h3>Outro</h3>
                     <p>I just want to give a massive thanks to Dmitry V. Sokolov and the Tiny Renderer projects for
