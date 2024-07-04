@@ -30,13 +30,13 @@
                     <!-- Date/Time -->
                     <p class="blog-meta">Posted on 26th Feb 2023</p>
                     <!-- Preview Image -->
-                    <iframe width="560" height="315"
-                        src="https://www.youtube.com/watch?v=z_Q0sA3wE10"
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/z_Q0sA3wE10?si=p8xd5amT3Zw1g_64"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen class="img-center"></iframe>
+                        allowfullscreen class="iframe-center"></iframe>
                     <!-- Post Content -->
-                    <p>This Blog post was adapted from my video on the same topic <a href="https://www.youtube.com/watch?v=Y0Ko0kvwfgA">here</a></p>
+                    <p>This Blog post was adapted from my video on the same topic <a
+                            href="https://www.youtube.com/watch?v=Y0Ko0kvwfgA">here</a></p>
                     <p>I don't know about you, but when I saw 2018 game of the year The Legend of Zelda: Breath of the
                         Wild's grass beautifully rendered on a device that fits in my hands… the first thought that came
                         to mind was… how can that be done in Godot? So, I am going to go over everything you need to
@@ -60,7 +60,8 @@
                     <p>It isn’t a perfect solution however. Since the CPU isn’t involved with the instancing of the
                         objects, it basically doesn’t exist according to the CPU, making things like adding physics,
                         collisions or other interactions and logic impossible… mostly.</p>
-                    <p>I highly recommend the <a href="https://www.youtube.com/watch?v=Y0Ko0kvwfgA">grass series</a>by Acerola who goes over the details of GPU instancing,
+                    <p>I highly recommend the <a href="https://www.youtube.com/watch?v=Y0Ko0kvwfgA">grass series</a> by
+                        Acerola who goes over the details of GPU instancing,
                         frustum culling, draw distance and other techniques to render dense fields of grass. Acerola
                         does this in Unity but the concepts are the same and the videos are very entertaining.</p>
                     <h2>Reducing Draw Calls</h2>
@@ -83,7 +84,8 @@
                     <p>Ok, so that's how Godot renders millions of meshes at once… but I hear you asking… Leon?? That's
                         not helpful… how do I create grass like in 2018 game of the year The Legend of Zelda: Breath of
                         the Wild using the Godot game engine? Luckily there are a few tools and handy plugins to help
-                        make beautiful patches of grass. The first tool I'm going to show you is <a href="https://github.com/HungryProton/scatter">Scatter</a>. Scatter is a
+                        make beautiful patches of grass. The first tool I'm going to show you is <a
+                            href="https://github.com/HungryProton/scatter">Scatter</a>. Scatter is a
                         plugin made by HungryProton, and is the go-to for beautiful grass in small-medium scenes.
                         Scatter uses MultiMeshInstances and can create very dense and custom patches of grass using its
                         3D curve editor and array of modifiers such as removing from a path, projecting on the floor and
@@ -99,8 +101,12 @@
                         the area you want your grass! Scatter can get slow to edit with lots of 3D curve points, and
                         lots of grass, so I recommend turning down your grass count while you edit.</p>
                     <p>A short side note on shaders… The built-in shaders and grass models in Scatter are very nice.
-                        With some nice wavy movements. I am using <a href="https://godotshaders.com/shader/stylized-grass-with-wind-and-deformation/">this grass shader</a> this grass shader. To add some
-                        player interaction and deformation, make your grass blade a child of a spatial node and add <a href="https://github.com/GDQuest/godot-shaders/blob/master/godot/Demos/WindGrass/GrassMesh.gd">this script</a>. 
+                        With some nice wavy movements. I am using <a
+                            href="https://godotshaders.com/shader/stylized-grass-with-wind-and-deformation/">this grass
+                            shader</a> this grass shader. To add some
+                        player interaction and deformation, make your grass blade a child of a spatial node and add <a
+                            href="https://github.com/GDQuest/godot-shaders/blob/master/godot/Demos/WindGrass/GrassMesh.gd">this
+                            script</a>.
                         Then assign your player in the script. This will deform the grass around the player's
                         coordinates for any mesh using this shader material, which includes all of the grass instanced
                         by the Scatter plugin. Notice how I only need to apply the material to the one grass blade and
@@ -124,10 +130,11 @@
                         systems that would need to be in place to keep performance under control which Godot just
                         doesn’t have and isn’t built for.</p>
                     <h2>Outro</h2>
-                        <p>And there you have it… I hope you enjoyed my run down of how grass systems work in Godot, and how
+                    <p>And there you have it… I hope you enjoyed my run down of how grass systems work in Godot, and how
                         you too can make great dense patches of grass in a somewhat performant manner, and we are all
                         one step closed to breath of wild in godot.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\thumbnail-2.webp" alt="A screenshot of the grass">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\thumbnail-2.webp"
+                        alt="A screenshot of the grass">
                 </div>
             </div>
         </div>

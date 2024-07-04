@@ -7,29 +7,42 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-weight: bold; /* Adjust as needed */
+    font-weight: bold;
+    /* Adjust as needed */
 }
 
-p, .lead, .blog-meta {
+p,
+.lead,
+.blog-meta {
     font-family: "Helvetica Neue", Arial, sans-serif;
-    font-weight: normal; /* Adjust as needed */
+    font-weight: normal;
+    /* Adjust as needed */
 }
 
 /* Navigation and Footer */
-.navbar, footer {
+.navbar,
+footer {
     background-color: #f8f9fa;
 }
 
 /* Links */
-a, a:visited { /* Styles for links */
-    color: #6c757d;
+a,
+a:visited {
+    /* Styles for links */
+    color: #728698;
     text-decoration: none;
 }
 
-a:hover, a:focus {
-    color: #5a6268;
+a:hover,
+a:focus {
+    color: #4a5c69;
     text-decoration: underline;
 }
 
@@ -40,7 +53,8 @@ a:hover, a:focus {
     text-align: left;
 }
 
-.blog-title, .blog-meta {
+.blog-title,
+.blog-meta {
     text-align: center;
 }
 
@@ -72,4 +86,12 @@ a:hover, a:focus {
     max-width: 80%;
     height: auto;
     border-radius: 5px;
-  }
+}
+
+.iframe-center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 315px;
+    border-radius: 5px;
+}

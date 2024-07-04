@@ -1,0 +1,6 @@
+ - Check all links work - DONE
+ - Fix video embeds - DONE
+ - Check all images are loaded correctly and consistently - DONE
+ - Check all image alt text - DONE
+ - Proof read index page - DONE
+ - Check for other bugs/glitches
