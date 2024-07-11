@@ -28,11 +28,10 @@
                     <!-- Date/Time -->
                     <p class="blog-meta">Posted on 16th Jun 2023</p>
                     <!-- Preview Image -->
-                    <iframe width="560" height="315"
-                        src="https://www.youtube.com/embed/sNXj0RN09ps?si=k2ZVgoNcAqN0lWB3"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen class="iframe-center"></iframe>
+                    <div class="iframe-container">
+                        <iframe class="responsive-iframe"
+                            src="https://www.youtube.com/embed/sNXj0RN09ps?si=k2ZVgoNcAqN0lWB3"></iframe>
+                    </div>
                     <!-- Post Content -->
                     <p>This article originally written for the following video, and has been converted to article form.
                     </p>
@@ -59,7 +58,8 @@
                         have edited it to be a bit whiter. Cool, now we have something that looks like a cloud! To make
                         it look good from all angles, we just turn billboarding on, and I am just going to change the
                         box extents to make it a bit denser.</p>
-                    <img src="Resources\cloud_2.webp" alt="material settings" class="img-fluid rounded mx-auto d-blockr">
+                    <img src="Resources\cloud_2.webp" alt="material settings"
+                        class="img-fluid rounded mx-auto d-blockr">
                     <p>These are all the material settings you need!</p>
                     <p>OK, so we have a single cloud. Absolutely beautiful. But it might be useful to create a system
                         that automatically populates a scene or area with a bunch of clouds to really sell those sky
@@ -68,7 +68,8 @@
                         the bounds of where the clouds will be spawned using the boxes side. Obviously, we don’t want to
                         render it, so add a material to the box and set it to unshaded, transparency on and the albedos
                         alpha to zero.</p>
-                        <img src="Resources\cloud_4.webp" alt="The godot editor showing the bounding box" class="img-fluid rounded mx-auto d-block">
+                    <img src="Resources\cloud_4.webp" alt="The godot editor showing the bounding box"
+                        class="img-fluid rounded mx-auto d-block">
                     <p>Add a script to the box called cloud spawner. In here, we need two variables, the number of
                         clouds we will spawn and the cloud itself as a packed scene. We then want a function called
                         spawn clouds which I will call in ready. In spawn clouds, we want to loop through each of the
@@ -77,10 +78,12 @@
                         y and z value inside the box bounds, and finally, we want to spawn a cloud at that position
                         using the instantiate function on our cloud packed scene. We then call add child and set the
                         clouds position to the random spawn position we picked earlier.</p>
-                        <img src="Resources\cloud_3.webp" alt="Code samples for spawning the clouds" class="img-fluid rounded mx-auto d-block">
+                    <img src="Resources\cloud_3.webp" alt="Code samples for spawning the clouds"
+                        class="img-fluid rounded mx-auto d-block">
                     <p>And there you go! Billboard clouds beautifully drifting through your scenes in Godot 4!</p>
                     <p>May your winds be high, and your skies be cloudy. Fly safe.</p>
-                    <img src="Resources\2023-06-16-12-19-59-1.webp" alt="A gif showing the end results of the clouds" class="img-fluid rounded mx-auto d-block">
+                    <img src="Resources\2023-06-16-12-19-59-1.webp" alt="A gif showing the end results of the clouds"
+                        class="img-fluid rounded mx-auto d-block">
                     <hr>
                     <h2>Resources:</h2>
                     <p><a href="https://github.com/LeonStansfield/Clouds">Repository</a></p>
