@@ -92,10 +92,12 @@ a:focus {
   position: relative;
   overflow: hidden;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625) */
+  max-width: 560px;
+  margin: 0 auto;
+  padding-top: 56.25%;
+  border-radius: 5px;
 }
 
-/* Then style the iframe to fit in the iframe-container div with full height and width */
 .responsive-iframe {
   position: absolute;
   top: 0;
@@ -104,4 +106,6 @@ a:focus {
   right: 0;
   width: 100%;
   height: 100%;
+  border: 0;
+  border-radius: 5px;
 }
