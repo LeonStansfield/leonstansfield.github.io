@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leon Stansfield Photography</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheet.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Leon Stansfield</a>
+        </div>
+    </nav>
+<!-- Portfolio Section -->
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="portfolio-grid row">
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_1384.jpg" class="img-fluid" alt="Photo 1">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_9775.jpg" class="img-fluid" alt="Photo 2">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_9843.jpg" class="img-fluid" alt="Photo 3">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_9869.jpg" class="img-fluid" alt="Photo 4">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_1384.jpg" class="img-fluid" alt="Photo 5">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_9775.jpg" class="img-fluid" alt="Photo 6">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_9843.jpg" class="img-fluid" alt="Photo 7">
+                </div>
+                <div class="portfolio-item col-12 col-sm-6 col-md-4 col-lg-3">
+                    <img src="Photos/IMG_9869.jpg" class="img-fluid" alt="Photo 8">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Footer -->
+    <footer class="py-4 bg-light text-dark-50">
+        <div class="container text-center">
+            <small>Leon Stansfield 2024</small>
+        </div>
+    </footer>
+    <!-- Overlay -->
+    <div class="overlay"></div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const images = document.querySelectorAll('.portfolio-item img');
+            const overlay = document.querySelector('.overlay');
+            const descriptions = document.querySelectorAll('.description');
+
+            images.forEach(img => {
+                img.addEventListener('click', function () {
+                    if (this.classList.contains('expanded')) {
+                        this.classList.remove('expanded');
+                        overlay.style.display = 'none';
+                        descriptions.forEach(desc => desc.style.display = 'none');
+                    } else {
+                        images.forEach(i => i.classList.remove('expanded'));
+                        descriptions.forEach(desc => desc.style.display = 'none');
+                        this.classList.add('expanded');
+                        this.nextElementSibling.style.display = 'block';
+                        overlay.style.display = 'block';
+                    }
+                });
+            });
+
+            overlay.addEventListener('click', function () {
+                images.forEach(img => img.classList.remove('expanded'));
+                descriptions.forEach(desc => desc.style.display = 'none');
+                overlay.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>
