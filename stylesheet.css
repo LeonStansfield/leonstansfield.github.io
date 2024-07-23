@@ -143,24 +143,6 @@ a:focus {
     border-radius: 5px;
 }
 
-.portfolio-item .description {
-    display: none;
-    text-align: center;
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #555;
-}
-
-.portfolio-item img.expanded + .description {
-    display: block;
-}
-
-footer {
-    background-color: #f8f9fa;
-    padding: 20px 0;
-    color: #6c757d;
-}
-
 .overlay {
     position: fixed;
     top: 0;
