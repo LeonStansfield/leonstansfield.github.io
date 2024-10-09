@@ -43,14 +43,14 @@
                         cells can change over many iterations based on the values they hold and the values held on their
                         neighboring cells. This can be very useful for creating unique and interesting patterns and
                         shapes or in my case 3D islands.</p>
-                    <img src="Resources\Screenshot 2024-06-23 132358.png" class="img-fluid rounded mx-auto d-block" alt="Cellular Automata Examples">
+                    <img src="Resources\Screenshot 2024-06-23 132358.webp" class="img-fluid rounded mx-auto d-block" alt="Cellular Automata Examples">
                     <p>Some interesting patterns and shapes created using 2D cellular automata.</p>
                     <h2>The theory</h2>
                     <p>Ok, so I want to create a cellular automata system in 3D that will consistently create unique
                         blobby island shapes. Let’s get into it.</p>
                     <p>At a base level, the process is quite simple. First, we create a grid. We can loop through a
                         vector of our desired size and initialize each value to zero.</p>
-                    <img src="Resources\image.png" class="img-fluid rounded mx-auto d-block" alt="Psuedo code example for the voxel grid">
+                    <img src="Resources\image.webp" class="img-fluid rounded mx-auto d-block" alt="Psuedo code example for the voxel grid">
                     <p>Then we can randomize our grid, setting each value to either alive or dead at based on a random
                         chance that can be altered for different results.</p>
                     <p>Then, for each iteration, we need to loop through our grid, and for each cell, check how many
@@ -58,7 +58,7 @@
                         alive, if not, we can kill the cell. Finally, we can ‘draw’ the grid, by placing blocks in the
                         relevant places. This can be done just once at the end, but I decided to do this every iteration
                         as the effect of seeing the island take shape is pretty interesting.</p>
-                    <img src="Resources\image-1.png" class="img-fluid rounded mx-auto d-block" alt="Psuedo code example for updating the voxel grid">
+                    <img src="Resources\image-1.webp" class="img-fluid rounded mx-auto d-block" alt="Psuedo code example for updating the voxel grid">
                     <h2>Optimisations</h2>
                     <p>Nice, so that’s nice and simple conceptually but after my first implementation, I was running
                         into some performance issues. We are attempting to loop through 15625 blocks multiple times each
@@ -69,7 +69,7 @@
                         each time I wanted to count the neighbors. I changed this so that the code stored an array of
                         each of the 26 directions. We can then just loop through each of the directions from the block’s
                         position and check if each one is alive or not.</p>
-                    <img src="Resources\image-2.png" class="img-fluid rounded mx-auto d-block" alt="A code sample showing the code for the count alive neighbours and gen neighbors functions">
+                    <img src="Resources\image-2.webp" class="img-fluid rounded mx-auto d-block" alt="A code sample showing the code for the count alive neighbours and gen neighbors functions">
                     <p>The next optimization is a big one. The draw grid function initially would loop through each
                         value in the grid and depending on whether it needed to have a block spawned or not, it would
                         spawn the block and append it to an array that had references to all the blocks in the scene.

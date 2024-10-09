@@ -56,7 +56,7 @@
                     <h3>Bresenham's Line Algorithm</h3>
                     <p>To do this we need to figure out how to join our vertices with lines. Introducing Bresenham’s
                         line algorithm.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-1.png" alt="pikachu wireframe">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-1.webp" alt="pikachu wireframe">
                     <p>Bresenham’s line algorithm will figure out exactly which pixels need to be colored between two 2D
                         points on our screen from (x1, y1) to (x1, y2) and don’t worry we will come back to the third Z
                         point later.</p>
@@ -89,7 +89,7 @@
                     </p>
                     <p>Now if we apply the algorithm for all the X and Y vertices in a mesh ignoring the Z axis, we get
                         this:</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-7.png" alt="tutorial image 5">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-7.webp" alt="tutorial image 5">
                     <h3>Rasterisation</h3>
                     <p>Next up, we need to figure out how to fill these triangles in. Unfortunately that is easier said
                         than done.</p>
@@ -116,7 +116,7 @@
                         others are much faster but this one was definitely the easiest for me to understand.</p>
                     <p>Cool, so now we know how to draw a single triangle we can just do this for all of the triangles
                         in our mesh.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-12.png" alt="Rasterized image of an emoji">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-12.webp" alt="Rasterized image of an emoji">
                     <h3>Shading</h3>
                     <p>Okay so at the minute all of our triangles are just being given a random color but we might want
                         to figure out how to shade our triangles using flat shading.</p>
@@ -124,7 +124,7 @@
                         basic rule with shading:</p>
                     <p>At the same light intensity each polygon is illuminated most brightly when it is facing the
                         direction of light.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-13.png" alt="tutorial image 8">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-13.webp" alt="tutorial image 8">
                     <p>Essentially if I hold a light directly in front of a flat surface it will be at its brightest,
                         but if I hold a light directly to the side of a flat surface it will get no illumination. If I
                         hold it at an angle it will be somewhere in between.</p>
@@ -132,14 +132,14 @@
                         is coming from behind the polygon and therefore the polygon is invisible. Since we don’t need to
                         render invisible things we can just simply delete them before we actually render them. This
                         technique is called backface culling.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-14.png" alt="Shaded image of an emoji">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-14.webp" alt="Shaded image of an emoji">
                     <h3>Hidden Face Removal</h3>
                     <p>You can’t see it on this model since it’s convex but for concave models, you would see artifacts
                         where triangles are not drawn in the correct order. The polygons are still drawn to the screen
                         since they still face the correct direction and therefore the back face culling doesn’t affect
                         them but there’s nothing to tell the computer not to render them because they’re behind other
                         polygons, like on this guy's mouth.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-15.png"
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-15.webp"
                         alt="Shaded render of a man with no back face culling">
                     <p>Luckily there’s a fix to this with a process called hidden face removal which requires something
                         called the Z buffer. This technique will stop the computer from drawing polygons on top of one
@@ -158,7 +158,7 @@
                         is behind the blue and green triangles.</p>
                     <img class="img-fluid rounded mx-auto d-block" src="Resources\image-17.webp" alt="tutorial image 10">
                     <p>This helps fix our issues with concave shapes as all of our hidden faces are removed.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-18.png"
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-18.webp"
                         alt="Shaded render of a man with no back face cullin">
                     <p>Okay so at this point we might feel satisfied with what we have.</p>
                     <p>If you are you shouldn’t be because we have completely forgotten about the third dimension until
@@ -172,7 +172,7 @@
                     <h3>Perspective Projection</h3>
                     <p>To apply perspective we need something called a frustum. This is a shape which we view all of our
                         objects inside of.</p>
-                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-19.png" alt="tutorial image 11">
+                    <img class="img-fluid rounded mx-auto d-block" src="Resources\image-19.webp" alt="tutorial image 11">
                     <p>It has a near plane, which is what we project our objects onto (think of this as the screen), and
                         a far plane, anything past the far plane will not be rendered.</p>
                     <p>To project the object in 3D space we would use the projection matrix. This can be rather
