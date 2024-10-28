@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography Portfolio - Leon Stansfield</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheet.css">
+    <style>
+        /* Grid styling for photos */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .photo-grid img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+
+        /* Modal (lightbox) styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1050;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            overflow: hidden; /* Prevents scrolling */
+            justify-content: center; /* Centers content horizontally */
+            align-items: center; /* Centers content vertically */
+        }
+
+        .modal-content {
+            max-width: 90%; /* Allow image to take up most of the modal */
+            max-height: 80%; /* Prevent the image from being too tall */
+            border-radius: 12px; /* Rounded corners for the image */
+            object-fit: contain; /* Maintain aspect ratio without stretching */
+        }
+
+        .close,
+        .prev,
+        .next {
+            color: white; /* Change button color to white for visibility */
+            position: absolute;
+            top: 20px; /* Move buttons closer to the top */
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close {
+            right: 30px; /* Position close button */
+        }
+
+        .prev {
+            left: 30px; /* Position previous button */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 30px; /* Position next button */
+            top: 50%; /* Center vertically */
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">Leon Stansfield</a>
+        </div>
+    </nav>
+
+    <!-- Photography Grid -->
+    <div class="container mt-5">
+        <br>
+        <h1 class="text-center">Photography Portfolio</h1>
+        <div class="photo-grid">
+            <!-- Group images into mini albums (related photos) -->
+            <div class="album" data-album="0">
+                <img src="Resources/group_1/DSC02550.jpg" alt="Photo 1" onclick="openModal(0, 0)" data-description="Photo 1 description here">
+            </div>
+            <div class="album" data-album="1">
+                <img src="Resources/group_2/DSC01027.jpg" alt="Photo 4" onclick="openModal(0, 1)" data-description="Photo 4 description here">
+            </div>
+            <div class="album" data-album="2">
+                <img src="Resources/group_3/DSC01380.jpg" alt="Photo 7" onclick="openModal(0, 2)" data-description="Photo 7 description here">
+            </div>
+            <!-- Add more albums as needed -->
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="photoModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+        <span class="next" onclick="changeSlide(1)">&#10095;</span>
+        <img class="modal-content" id="modalImage">
+        <div class="modal-description" id="modalDescription"></div>
+    </div>
+
+    <script>
+        // JavaScript for handling the modal behavior
+        const albums = [
+            [
+                { src: "Resources/group_1/DSC02550.jpg", description: "Photo 1 description here" },
+                { src: "Resources/group_1/image.jpg", description: "Photo 2 description here" },
+                { src: "Resources/group_1/DSC02655.jpg", description: "Photo 3 description here" },
+            ],
+            [
+                { src: "Resources/group_2/DSC01027.jpg", description: "Photo 4 description here" },
+                { src: "Resources/group_2/DSC01069.jpg", description: "Photo 5 description here" },
+                { src: "Resources/group_2/DSC01094.jpg", description: "Photo 6 description here" },
+            ],
+            [
+                { src: "Resources/group_3/DSC01380.jpg", description: "Photo 7 description here" },
+                { src: "Resources/group_3/DSC01600.jpg", description: "Photo 8 description here" },
+                { src: "Resources/group_3/DSC01666.jpg", description: "Photo 9 description here" },
+            ],
+            // Add more albums here as needed
+        ];
+
+        const modal = document.getElementById("photoModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalDescription = document.getElementById("modalDescription");
+        let currentAlbumIndex = 0;
+        let currentIndex = 0;
+
+        function openModal(index, albumIndex) {
+            currentAlbumIndex = albumIndex;
+            currentIndex = index;
+            showSlide(currentIndex);
+            modal.style.display = "flex"; // Use flex to center content
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function changeSlide(direction) {
+            currentIndex += direction;
+            const album = albums[currentAlbumIndex];
+            if (currentIndex >= album.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = album.length - 1;
+            showSlide(currentIndex);
+        }
+
+        function showSlide(index) {
+            const album = albums[currentAlbumIndex];
+            const img = album[index];
+            modalImage.src = img.src; // Use the same source for simplicity
+            modalDescription.textContent = img.description; // Set description
+        }
+
+        // Close the modal if the user clicks outside the image
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-light text-dark-50">
+        <div class="container text-center">
+            <small>Leon Stansfield 2024</small>
+        </div>
+    </footer>
+</body>
+
+</html>
