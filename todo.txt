@@ -1,0 +1,16 @@
+Upgrade:
+
+Index:
+    - Make the index display Portfolio pieces on a grid rather than vertical list
+    - Write and create a blog post about TawnyAV
+
+Photography page:
+    - fix bugs on page:
+        - Albums have weird white background
+        - When albums are open they are not centered
+        - Album descriptions are not visible
+    - Seperate HTML, Javascript and CSS into seperate files
+    - Create actual content of albums, descriptions
+    - Polish page
+        - Ensure fonts and styling is consistent with index.html
+        - Convert stuff to webp
