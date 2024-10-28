@@ -61,6 +61,7 @@
                 </div>
             </div>
         </div>
+        <br>
     </div>
 
     <!-- Lightbox Modal -->
@@ -197,15 +198,44 @@
         let currentAlbumIndex = 0;
         let currentIndex = 0;
 
+        let startX = 0;
+
         function openModal(index, albumIndex) {
             currentAlbumIndex = albumIndex;
             currentIndex = index;
             showSlide(currentIndex);
-            modal.style.display = "flex"; // Use flex to center content
+            modal.style.display = "flex";
+            document.addEventListener('keydown', handleKeyNavigation);
+            modal.addEventListener('touchstart', handleTouchStart);
+            modal.addEventListener('touchend', handleTouchEnd);
         }
 
         function closeModal() {
             modal.style.display = "none";
+            document.removeEventListener('keydown', handleKeyNavigation);
+            modal.removeEventListener('touchstart', handleTouchStart);
+            modal.removeEventListener('touchend', handleTouchEnd);
+        }
+
+        function handleKeyNavigation(event) {
+            if (event.key === "ArrowRight") {
+                changeSlide(1);
+            } else if (event.key === "ArrowLeft") {
+                changeSlide(-1);
+            }
+        }
+
+        function handleTouchStart(event) {
+            startX = event.touches[0].clientX;
+        }
+
+        function handleTouchEnd(event) {
+            const endX = event.changedTouches[0].clientX;
+            if (startX - endX > 50) {
+                changeSlide(1); // Swipe left to go to next
+            } else if (endX - startX > 50) {
+                changeSlide(-1); // Swipe right to go to previous
+            }
         }
 
         function changeSlide(direction) {

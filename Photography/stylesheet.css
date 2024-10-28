@@ -32,8 +32,6 @@ footer {
     text-align: center;
 }
 
-/* Other existing styles... */
-
 /* Navigation and Footer */
 .navbar {
     background-color: #f8f9fa;
@@ -84,13 +82,13 @@ a:focus {
 }
 
 .modal-content {
-    width: auto; /* Allow the width to adjust to the image */
-    height: auto; /* Allow the height to adjust to the image */
-    max-width: 90%; /* Limit the maximum width */
-    max-height: 90%; /* Limit the maximum height */
-    border-radius: 12px; /* Keep your existing border radius */
-    object-fit: cover; /* Change this to cover */
-    display: block; /* Ensure the image is displayed as a block element */
+    width: auto;
+    height: auto;
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+    object-fit: cover;
+    display: block;
 }
 
 .modal-description {
@@ -109,24 +107,24 @@ a:focus {
 .next {
     color: white;
     position: absolute;
-    top: 20px;
+    top: 50%; /* Center vertically */
     font-size: 2rem;
     font-weight: bold;
     cursor: pointer;
+    transform: translateY(-50%); /* Adjust for perfect centering */
+    z-index: 1100; /* Ensure buttons are on top */
 }
 
 .close {
+    top: 20px;
     right: 30px;
+    transform: none; /* Reset for the close button */
 }
 
 .prev {
     left: 30px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 .next {
     right: 30px;
-    top: 50%;
-    transform: translateY(-50%);
 }
