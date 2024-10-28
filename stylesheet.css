@@ -15,7 +15,6 @@ h5,
 h6 {
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight: bold;
-    /* Adjust as needed */
 }
 
 p,
@@ -23,7 +22,6 @@ p,
 .blog-meta {
     font-family: "Helvetica Neue", Arial, sans-serif;
     font-weight: normal;
-    /* Adjust as needed */
 }
 
 /* Navigation and Footer */

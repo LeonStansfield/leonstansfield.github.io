@@ -1,0 +1,132 @@
+/* Base styles */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    padding-top: 56px;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+}
+
+/* Main content area should grow */
+.content {
+    flex: 1;
+}
+
+/* Footer styles */
+footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Other existing styles... */
+
+/* Navigation and Footer */
+.navbar {
+    background-color: #f8f9fa;
+}
+
+/* Links */
+a,
+a:visited {
+    color: #728698;
+    text-decoration: none;
+}
+
+a:hover,
+a:focus {
+    color: #4a5c69;
+    text-decoration: underline;
+}
+
+/* Grid styling for photos */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 15px;
+    margin-top: 50px;
+}
+
+.photo-grid img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* Modal (lightbox) styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    width: auto; /* Allow the width to adjust to the image */
+    height: auto; /* Allow the height to adjust to the image */
+    max-width: 90%; /* Limit the maximum width */
+    max-height: 90%; /* Limit the maximum height */
+    border-radius: 12px; /* Keep your existing border radius */
+    object-fit: cover; /* Change this to cover */
+    display: block; /* Ensure the image is displayed as a block element */
+}
+
+.modal-description {
+    color: white;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    max-width: 90%;
+}
+
+/* Navigation buttons */
+.close,
+.prev,
+.next {
+    color: white;
+    position: absolute;
+    top: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close {
+    right: 30px;
+}
+
+.prev {
+    left: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.next {
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+}
