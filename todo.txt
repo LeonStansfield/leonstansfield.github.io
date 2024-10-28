@@ -5,7 +5,5 @@ Index:
     - Write and create a blog post about TawnyAV
 
 Photography page:
-    - Create actual content of albums, descriptions
-    - Polish page
-        - Ensure fonts and styling is consistent with index.html
-        - Convert stuff to webp
+    - bugs
+        - On mobile, arrow buttons cannot be seen or clicked as they are behind the picture object
