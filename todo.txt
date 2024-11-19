@@ -5,5 +5,3 @@ Index:
     - Write and create a blog post about TawnyAV
 
 Photography page:
-    - bugs
-        - On mobile, arrow buttons cannot be seen or clicked as they are behind the picture object

@@ -70,7 +70,7 @@
         <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
         <span class="next" onclick="changeSlide(1)">&#10095;</span>
         <img class="modal-content" id="modalImage">
-        <div class="modal-description" id="modalDescription"></div>
+        <!--<div class="modal-description" id="modalDescription"></div>-->
     </div>
 
     <script>
@@ -80,7 +80,6 @@
                 { src: "Resources/benufo/DSC01600.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
                 { src: "Resources/benufo/DSC02167.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
                 { src: "Resources/benufo/DSC01309.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
-                { src: "Resources/benufo/DSC01666.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
                 { src: "Resources/benufo/DSC01546.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
                 { src: "Resources/benufo/DSC01380.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
                 { src: "Resources/benufo/DSC01666.webp", description: "Ben UFO, Nate Kash and Rishi playing at the no_one Sinai Sound System 10th anneversary at the trinity center." },
@@ -250,7 +249,7 @@
             const album = albums[currentAlbumIndex];
             const img = album[index];
             modalImage.src = img.src; // Use the same source for simplicity
-            modalDescription.textContent = img.description; // Set description
+            // modalDescription.textContent = img.description; // Set description
         }
 
         // Close the modal if the user clicks outside the image
