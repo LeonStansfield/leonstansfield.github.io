@@ -83,7 +83,7 @@ def process_images(directory, watermark_text, max_resolution=(3840, 2160), font_
 
 if __name__ == '__main__':
     # Set the directory, watermark text, and parameters
-    target_directory = 'Resources'  # Replace with your directory path
+    target_directory = 'Resources/frankiejones2'
     watermark_text = 'Leon Stansfield'
     max_resolution = (3840, 2160)  # 4K resolution
     font_size = 300
