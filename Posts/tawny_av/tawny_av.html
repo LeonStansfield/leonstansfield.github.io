@@ -45,7 +45,7 @@
                     <h2>What TawnyAV Is (and Isn't)</h2>
                     <p>Before diving into the tech, it's important to understand what TawnyAV is at its heart: it's fundamentally a digital art piece. While it has the bones of a simple 'game' engine, it's not a polished, user-friendly software package like you might find elsewhere. The goal behind TawnyAV isn't to sell the software, but to collaborate directly with local DJs and musicians here in the UK. I want to manually craft unique, tailored AV shows that complement s specific sound and style for live sets. If that sounds interesting, get in touch! (Contact details at the end).</p>
 
-                    <h2>How It Works: Scenes and Shaders</h2>
+                    <h2>Scenes and Shaders</h2>
                     <p>Fundamentally, Tawny AV works in a very similar way to other game engines I have written. It is written in rust and uses <a href="https://macroquad.rs/" target="_blank" rel="noopener noreferrer">Macroquad</a> for window management, input, rendering and UI. The visuals themselves are based around ‘scenes’.</p>
 
                     <p>Each visual element in Tawny AV is encapsulated within a 'Scene'. Think of a Scene as a self contained module responsible for a specific type of visual display. Every scene handles its own logic for loading resources, updating its state frame by frame, and drawing itself to the screen using Macroquad.</p>
@@ -56,7 +56,7 @@
 
                     <p>This structure makes it relatively straightforward to create new visualisers by implementing the basic Scene requirements: <code>new()</code>, <code>update()</code>, and <code>draw()</code>.</p>
 
-                    <h2>Audio Reactivity: Listening for the Beat</h2>
+                    <h2>Audio Reactivity</h2>
                     <p>The core of TawnyAV's reactivity comes from its audio processing pipeline. It uses the <a href="https://crates.io/crates/cpal" target="_blank" rel="noopener noreferrer"><code>cpal</code></a> library to capture audio directly from the default microphone input device. This raw audio stream is then processed in chunks.</p>
 
                     <p>Currently, the focus is on beat detection. For each incoming chunk of audio data, the system calculates its energy level (essentially, its loudness). It keeps track of the average energy over a recent time window (a rolling average). When the energy of a new chunk significantly exceeds this recent average (based on a configurable sensitivity), and enough time has passed since the last beat (a cooldown period), it registers a "beat".</p>
