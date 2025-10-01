@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TawnyAV</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../stylesheet.css">
+    <style>
+        /* Basic styles for blog content if bootstrap isn't fully customized */
+        body { padding-top: 56px; /* Adjust based on navbar height */}
+        .blog-content { margin-top: 20px; }
+        .blog-title { margin-bottom: 0; }
+        .blog-meta { color: #6c757d; margin-bottom: 20px; }
+        .blog-content h2 { margin-top: 30px; margin-bottom: 15px; }
+        .blog-content p { line-height: 1.6; }
+        .blog-content ul { padding-left: 20px; }
+        .blog-content li { margin-bottom: 10px; }
+        code { background-color: #f8f9fa; padding: 0.2em 0.4em; border-radius: 3px; font-size: 90%; }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../../index.html">Leon Stansfield</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="blog-content">
+                    <h1 class="blog-title mt-4">TawnyAV</h1>
+
+                    <p class="blog-meta lead">by Leon Stansfield</p>
+
+                    <img src="Resources\demo1.webp" class="img-fluid rounded mx-auto d-block" alt="An animation of TawnyAV in action">
+                    
+                    <p class="blog-meta">Posted on April 7, 2025</p> <p>TawnyAV is an audio visual software designed to display procedural visuals that adapt dynamically to audio picked up by the device's microphone.</p>
+
+                    <p>It has been developed for a specific use case; as a home grown live AV solution for the electronic music scene here in the UK. Tawny started out from my involvement as a fan of the electronic music scene here in the UK. I see a lot of events with small Djs, passionately sharing their curated music and style, and sometimes think it would be really cool to have some visuals on a display with the DJ. With that in mind, and a general itch for me to do something creative and technical, I wrote Tawny AV.</p>
+
+                    <h2>What TawnyAV Is (and Isn't)</h2>
+                    <p>Before diving into the tech, it's important to understand what TawnyAV is at its heart: it's fundamentally a digital art piece. While it has the bones of a simple 'game' engine, it's not a polished, user-friendly software package like you might find elsewhere. The goal behind TawnyAV isn't to sell the software, but to collaborate directly with local DJs and musicians here in the UK. I want to manually craft unique, tailored AV shows that complement s specific sound and style for live sets. If that sounds interesting, get in touch! (Contact details at the end).</p>
+
+                    <h2>Scenes and Shaders</h2>
+                    <p>Fundamentally, Tawny AV works in a very similar way to other game engines I have written. It is written in rust and uses <a href="https://macroquad.rs/" target="_blank" rel="noopener noreferrer">Macroquad</a> for window management, input, rendering and UI. The visuals themselves are based around ‘scenes’.</p>
+
+                    <p>Each visual element in Tawny AV is encapsulated within a 'Scene'. Think of a Scene as a self contained module responsible for a specific type of visual display. Every scene handles its own logic for loading resources, updating its state frame by frame, and drawing itself to the screen using Macroquad.</p>
+
+                    <p>A good example is the <code>ShaderScene</code>. When this scene is active, it loads GLSL vertex and fragment shader files from disk. In each frame's update, it receives global data such as the current time. These parameters are passed into the shader as uniforms. This allows the shader code itself to react dynamically to the music.</p>
+
+                    <p>At the moment, the uniforms passed into the shader is the shaders timestep as well as the background image texture. When a beat is detected by the audio processor we simply randomise the timestep to create a randomisation in the visual.</p>
+
+                    <p>This structure makes it relatively straightforward to create new visualisers by implementing the basic Scene requirements: <code>new()</code>, <code>update()</code>, and <code>draw()</code>.</p>
+
+                    <h2>Audio Reactivity</h2>
+                    <p>The core of TawnyAV's reactivity comes from its audio processing pipeline. It uses the <a href="https://crates.io/crates/cpal" target="_blank" rel="noopener noreferrer"><code>cpal</code></a> library to capture audio directly from the default microphone input device. This raw audio stream is then processed in chunks.</p>
+
+                    <p>Currently, the focus is on beat detection. For each incoming chunk of audio data, the system calculates its energy level (essentially, its loudness). It keeps track of the average energy over a recent time window (a rolling average). When the energy of a new chunk significantly exceeds this recent average (based on a configurable sensitivity), and enough time has passed since the last beat (a cooldown period), it registers a "beat".</p>
+
+                    <p>This beat detection flag is then made available globally, allowing active scenes like the <code>ShaderScene</code> and <code>Cellular Automata</code> scenes to react and change their visuals in sync with the music's rhythm.</p>
+
+                    <p><em>(In the future, I want to use Fourier transforms to get more data about the intensity of bass, mids and treble for any given moment to add more reactivity to visual effects.)</em></p>
+
+                    <h2>Current Visuals</h2>
+                    <p>So far, I've developed a couple of core scene types for TawnyAV:</p>
+                    <ul>
+                        <li>Shader Scenes: As described earlier, these scenes use GLSL shaders for visuals. They are highly flexible, as the visual logic is defined entirely within the shader code, reacting to the detected beat.</li>
+                        <img src="Resources\shaders1.webp" class="img-fluid rounded mx-auto d-block" alt="A demo of a shader scene">
+                        <li>Cellular Automata Scenes: This scene type generates visuals based on cellular automata rules, like Conway's Game of Life. It simulates a grid of cells evolving over time based on simple rules defined in configuration files. The cellular automata grid is randomized on every beat.</li>
+                        <img src="Resources\cellular_automata.webp" class="img-fluid rounded mx-auto d-block" alt="A demo of a cellular automata scene">
+                    </ul>
+
+                    <h2>Why</h2>
+                    <p>Tawny AV fundamentally has quite a limited nature, at least at the moment. As mentioned earlier, it's a digital art piece. While its structured like a basic game engine, its forward facing user interface is bare bones at best. Many of the core ideas found in other software, like actual game engines or visual programming environments like TouchDesigner, are hidden behind configuration files or even require modifying the source code itself.</p>
+
+                    <p>That's why, while the software and source code is available on <a href="https://leon-stansfield.itch.io/tawny-av">itch.io</a> for people to use, my main goal is to manually craft an AV show for local Djs and musicians who want some visuals. I want to collaborate to create unique, visual experiences that complement a specific sound and style for live sets.</p>
+                    <p>Tawny AV is designed to be modular, so if you have some programming knowledge or are interested in just having a browse, find the source code <a href="https://github.com/LeonStansfield/tawnyAV">here</a>. </p>
+                    <p>If that is something you are interested in, contact me at <a href="mailto:leonstansfield208@gmail.com">leonstansfield208@gmail.com</a>!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-4 bg-light text-dark-50 mt-5">
+        <div class="container text-center">
+            <small>Leon Stansfield 2024</small> </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
